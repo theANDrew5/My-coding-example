@@ -1,0 +1,62 @@
+﻿<div class="delivery_messages" data-bind="template: {name: 'pxp__deliveryManager__messages', data: messagesManager }"></div>
+<div class="delivery-recipient-container">
+    <h3 data-bind="html: loc_recipientTitle"></h3>
+    <div class="delivery-recipient-form">
+        <div class="delivery-recipient-form__row">
+            <div class="delivery-recipient-form__row__item">
+                <label for="deliveryFirstName" data-bind="html: loc_firstNameLabel"></label>
+                <input id="deliveryFirstName" class="delivery-form-input" type="text" name="first-name" data-bind="textInput:firstName, disable:isLoading, css:{loading:isLoading}" />
+            </div>
+            <div class="delivery-recipient-form__row__item">
+                <label for="deliveryLastName" data-bind="html: loc_lastNameLabel"></label>
+                <input id="deliveryLastName" class="delivery-form-input" type="text" name="last-name" data-bind="textInput:lastName, disable:isLoading, css:{loading:isLoading}" />
+            </div>
+            <!-- ko if: isUsedMiddleName -->
+            <div class="delivery-recipient-form__row__item">
+                <label for="deliveryMiddleName" data-bind="html: loc_middleNameLabel"></label>
+                <input id="deliveryMiddleName" class="delivery-form-input" type="text" name="middle-name" data-bind="textInput:middleName, disable:isLoading, css:{loading:isLoading}" />
+            </div>
+            <!-- /ko -->
+        </div>
+        <div class="delivery-recipient-form__row">
+            <div class="delivery-recipient-form__row__item">
+                <label for="deliveryEmail" data-bind="html: loc_emailLabel"></label>
+                <input id="deliveryEmail" class="delivery-form-input" type="text" name="email" data-bind="textInput:email, disable:isLoading, css:{loading:isLoading}" />
+            </div>
+            <div class="delivery-recipient-form__row__item">
+                <label for="deliveryPhone" data-bind="html: loc_phoneLabel"></label>
+                <input id="deliveryPhone" class="delivery-form-input" type="tel" name="phone" autocomplete="phone" data-bind="phoneinput:phone, disable:isLoading, css:{loading:isLoading}" />
+            </div>
+        </div>
+        <div class="delivery-recipient-form__row">
+            <div class="delivery-recipient-form__row__item">
+                <label for="deliveryComment" data-bind="html: loc_commentLabel"></label>
+                <textarea id="deliveryComment" rows="2" class="delivery-form-input delivery-recipient-form__textarea" data-bind="textInput:comment, disable:isLoading, css:{loading:isLoading}" />
+            </div>
+        </div>
+        <!-- ko if: canBeOrderByUserCompany -->
+        <div class="delivery-recipient-form__row">
+            <div class="delivery-recipient-form__row__item">
+                <input id="is-order-from-company" type="checkbox" data-bind="checked: isOrderFromUserCompany" />
+                <label for="is-order-from-company" data-bind="html: loc_isOrderFromUserCompanyLabel"></label>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: isUsedAdditionalEmail || isUsedAdditionalPhone -->
+        <div class="delivery-recipient-form__row">
+            <!-- ko if: isUsedAdditionalEmail -->
+            <div class="delivery-recipient-form__row__item">
+                <label for="deliveryEmail" data-bind="html: loc_additionalEmailLabel"></label>
+                <input id="deliveryEmail" class="delivery-form-input" type="text" name="additionalEmail" data-bind="textInput:additionalEmail, disable:isLoading, css:{loading:isLoading}" />
+            </div>
+            <!-- /ko -->
+            <!-- ko if: isUsedAdditionalPhone -->
+            <div class="delivery-recipient-form__row__item">
+                <label for="deliveryAdditionalPhone" data-bind="html: loc_additionalPhoneLabel"></label>
+                <input id="deliveryAdditionalPhone" class="delivery-form-input" type="tel" name="additionalPhone" autocomplete="additionalPhone" data-bind="phoneinput:additionalPhone, disable:isLoading, css:{loading:isLoading}" />
+            </div>
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+    </div>
+</div>

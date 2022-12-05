@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningsAsErrors>$(WarningsAsErrors);NU1605;CS0649</WarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningsAsErrors>$(WarningsAsErrors);NU1605;CS0649</WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Photoprint.Core\Photoprint.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Repositories\Base\BaseSqlRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\CustomWorkRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\Notifications\MailServerRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\Notifications\MailTemplateRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\Orders\OrderCommentRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\Orders\OrderInvoiceRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\PaymentRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\PaymentSystemRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\Templates\TemplateRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\Templates\TemplateSetRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\UserGroupRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\User\UserRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

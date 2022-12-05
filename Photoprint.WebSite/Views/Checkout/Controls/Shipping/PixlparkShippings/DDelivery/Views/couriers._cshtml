@@ -1,0 +1,77 @@
+@using System.Activities.Expressions
+@using System.Linq
+@using RazorEngine
+@using RazorEngine.Text
+@inherits RazorEngine.Templating.TemplateBase<Photoprint.WebSite.API.Controllers.DDeliveryCourierFormModel>
+
+<div class="map-popup">
+	<div class="map-popup__head">
+		<p>Я хочу</p>
+		<div class="delivery-type">@Include("typeHelper", Model.ShippingInfo)</div>
+		<p class="in">в</p>
+		<div class="delivery-place" style="width: 354px;">
+			<input type="hidden" name="ddelivery_city" value="@Model.CityInfo.SelectedCity.Id"/>
+			<div class="delivery-place__title">
+				<input type="text" title="@Model.CityInfo.SelectedCity.Name"/>
+				<span><i>&nbsp;</i></span>
+			</div>
+			<div class="delivery-place__drop">
+				<div class="delivery-place__drop_i">
+					<h2 class="search">Поиск города:</h2>
+					<ul class="search"></ul>
+					<h2 class="pop">Популярные города:</h2>
+					<ul class="pop">@Include("cityHelper", Model.CityInfo)</ul>
+				</div>
+			</div>
+		</div>
+		<div class="map-popup__head__close">&nbsp;</div>
+	</div>
+
+	<div class="map-popup__main">
+		<div class="map-popup__main__overlay">&nbsp;</div>
+		<div class="map-popup__main__delivery small">
+			<table>
+				@if (Model.Companies != null && Model.Companies.Any())
+				{
+					foreach (var company in Model.Companies)
+					{
+						var logo = string.Format("/Views/Checkout/Controls/Shipping/PixlparkShippings/DDelivery/tems/default/img/logo/{0}.png", company.Ico ?? "pack");
+						<tr>
+							<td class="col1">
+								<input type="radio" name="delivery_company" value="@company.DeliveryCompany" @(Model.Companies.IndexOf(company) == 0 ? "checked='checked'" : string.Empty) />
+							</td>
+							<td class="col2">
+								<img src="@logo" alt="title" />
+							</td>
+							<td class="col3"><p><strong>@company.DeliveryCompanyName</strong></p></td>
+							<td class="col4">
+								<strong>@company.TotalPriceCorrected <i class="icon-rub">&nbsp;</i></strong>
+							</td>
+							<td class="col5"><strong>@company.DeliveryTimeMinCorrected</strong> дн.</td>
+						</tr>
+					}
+				}
+				else
+				{
+					<tr>
+						<td class="col1">
+							<div style="text-align: center">Извините, этот способ доставки не доступен для выбранного города.</div>
+						</td>
+					</tr>
+				}
+			</table>
+		</div>
+		@if (Model.Companies != null && Model.Companies.Any())
+		{
+			<script type="application/javascript">
+				var couriers = @(new RawString(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Companies)));
+			</script>
+			<div class="map-popup__main__delivery__next">
+				<a href="#">Далее<i>&nbsp;</i></a>
+			</div>
+		}
+	</div>
+	<div class="map-popup__bott">
+		<a href="http://saferoute.ru" target="blank">Сервис доставки Saferoute.ru</a>
+	</div>
+</div>

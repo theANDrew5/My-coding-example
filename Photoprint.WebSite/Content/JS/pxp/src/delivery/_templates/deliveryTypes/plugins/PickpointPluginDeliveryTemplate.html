@@ -1,0 +1,25 @@
+﻿<div id="pxp__pickpoint_plugin_container" class="delivery_type_plugin"></div>
+
+<!-- ko if: isPointSelected -->
+<h3 data-bind="html: loc_pointSelectedTitle"></h3>
+<div class="delivery-selected-point" data-bind="with: selectedPoint">
+    <div class="delivery-selected-point-data">
+        <span class="delivery-selected-point-data__info-title">
+            <span data-bind="html: loc_pointNameTitle"></span>&#58;
+        </span>
+        <span data-bind="html: addressData.Description"></span>
+    </div>
+    <div class="delivery-selected-point-data">
+        <span class="delivery-selected-point-data__info-title">
+            <span data-bind="html: loc_addressTitle"></span>&#58;
+        </span>
+        <span style="font-weight: 700" data-bind="html: addressData.AddressLine"></span>
+    </div>
+    <div class="delivery-selected-point-data">
+        <span class="delivery-selected-point-data__info-title">
+            <span data-bind="html: loc_priceTitle"></span>&#58;
+        </span>
+        <span style="font-weight: 700" data-bind="html: priceText"></span>
+    </div>
+</div>
+<!-- /ko -->

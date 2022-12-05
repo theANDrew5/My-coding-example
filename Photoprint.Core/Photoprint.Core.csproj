@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;0618</NoWarn>
+    <WarningsAsErrors>$(WarningsAsErrors);NU1605;CS0649</WarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;0618</NoWarn>
+    <WarningsAsErrors>$(WarningsAsErrors);NU1605;CS0649</WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Materials\Editors\Calculation\**" />
+    <EmbeddedResource Remove="Models\Materials\Editors\Calculation\**" />
+    <None Remove="Models\Materials\Editors\Calculation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="HintableParameters.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="HintableParameters.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.S3" Version="3.7.9.12" />
+    <PackageReference Include="CCAvenueCryptoPackage" Version="2.2.0" />
+    <PackageReference Include="CoreCLR-NCalc" Version="2.2.101" />
+    <PackageReference Include="HtmlSanitizer" Version="7.1.488" />
+    <PackageReference Include="Markdig" Version="0.30.2" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NLog" Version="5.0.0" />
+    <PackageReference Include="Serilog" Version="2.11.0" />
+    <PackageReference Include="Serilog.Formatting.Compact" Version="1.1.0" />
+    <PackageReference Include="Serilog.Sinks.PeriodicBatching" Version="2.3.1" />
+    <PackageReference Include="StackExchange.Redis" Version="2.5.61" />
+    <PackageReference Include="System.Buffers" Version="4.5.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
+    <PackageReference Include="System.Runtime.Caching" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Materials\VectorEditor\State\" />
+  </ItemGroup>
+
+</Project>

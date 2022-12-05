@@ -1,0 +1,41 @@
+@using RazorEngine
+@inherits RazorEngine.Templating.TemplateBase<Photoprint.Core.Models.DDelivery.DDeliveryShippingInfo>
+<div class="delivery-type__title courier">
+	<img src="/Views/Checkout/Controls/Shipping/PixlparkShippings/DDelivery/tems/default/img/icons/icon-courier.png" />доставить курьером <span class="arrow"><i>&nbsp;</i></span>
+</div>
+<div class="delivery-type__title self">
+	<img src="/Views/Checkout/Controls/Shipping/PixlparkShippings/DDelivery/tems/default/img/icons/shipping-grey.png" />забрать самовывозом <span class="arrow"><i>&nbsp;</i></span>
+</div>
+<div class="delivery-type__drop">
+    <p class="loader_center">
+		<img src="/Views/Checkout/Controls/Shipping/PixlparkShippings/DDelivery/tems/default/img/ajax_loader_horizont.gif" />
+    </p>
+	<ul>
+		@if (Model.Courier != null && !Model.Courier.IsDisabled)
+		{
+			<li class="delivery-type__drop_courier">
+				<a href="javascript:void(0)">
+					<span class="name">доставить курьером</span>
+					<span class="price"><span>@Model.Courier.MinPrice</span> <i class="icon-rub">&nbsp;</i></span>
+					<span class="date">
+						от <strong>@Model.Courier.MinTime</strong>
+						<span>дн.</span>
+					</span>
+				</a>
+			</li>
+		}
+		@if (Model.Point != null && !Model.Point.IsDisabled)
+		{
+			<li class="delivery-type__drop_self">
+				<a href="javascript:void(0)">
+					<span class="name">забрать самовывозом</span>
+					<span class="price"><span>@Model.Point.MinPrice</span> <i class="icon-rub">&nbsp;</i></span>
+					<span class="date">
+						от <strong>@Model.Point.MinTime</strong>
+						<span>дн.</span>
+					</span>
+				</a>
+			</li>
+		}
+    </ul>
+</div>

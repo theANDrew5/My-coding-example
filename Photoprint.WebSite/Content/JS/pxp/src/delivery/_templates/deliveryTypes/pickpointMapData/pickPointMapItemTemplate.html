@@ -1,0 +1,57 @@
+<div id="delivery-view-map-container__bubble" class="delivery-view-map-container__map__item" data-bind="foreach: data">
+    <!-- ko if: isVisibleByFilter -->
+    <div data-bind="visible: isSelectedOnList, attr: { 'id': ('bubble_address_' + addressData.Id) }, css: { 'loading-wheel': isLoading }">
+        <div class="delivery-view-map-container__map__item__title" data-bind="html: shippingTitle"></div>
+        <!-- ko ifnot: isVisible -->
+        <div class="delivery-view-map-container__map__item__error" data-bind="html: loc_selectError"></div>
+        <!-- /ko -->
+        <!-- ko if: isVisible -->
+        <div class="delivery-view-map-container__map__item__info">
+            <div>
+                <span class="delivery-view-map-container__map__item__info-title">
+                    <span data-bind="html: loc_addressTitle"></span>&#58;
+                </span>
+                <span data-bind="html: address"></span>
+            </div>
+            <div>
+                <span class="delivery-view-map-container__map__item__info-title">
+                    <span data-bind="html: loc_priceTitle"></span>&#58;
+                </span>
+                <span data-bind="html: priceText"></span>
+            </div>
+            <!-- ko if: isPeriodVisible-->
+            <div>
+                <span class="delivery-view-map-container__map__item__info-title">
+                    <span data-bind="html:loc_deliveryPeriodTitle"></span>&#58;
+                </span>
+                <span data-bind="html:deliveryPeriodText"></span>
+            </div>
+            <!-- /ko -->
+            <!-- ko ifnot: isPhoneEmpty -->
+            <div>
+                <span class="delivery-view-map-container__map__item__info-title">
+                    <span data-bind="html: loc_phoneTitle"></span>&#58;
+                </span>
+                <span data-bind="html: phone"></span>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: isShippingDescriptionVisible -->
+            <div>
+                <span class="delivery-view-map-container__map__item__info-title">
+                    <span data-bind="html: loc_descriptionTitle"></span>&#58;
+                </span>
+                <span data-bind="html: shippingDescription"></span>
+            </div>
+            <!-- /ko -->
+        </div>
+        <div>
+            <button type="button" class="btn item-btn item-btn__blink" data-bind="click: $parent.selectPointFromMap, html: selectBtnText, attr: selectBtnAttr"></button>
+        </div>
+        <div>
+            <a class="semilink" href="#" data-bind="html: loc_goBack, click: $parent.resetMapView"></a>
+        </div>
+        <!-- /ko -->
+    </div>
+    <hr data-bind="visible: ($parent.data.length > 1 && $index() !== $parent.data.length - 1) " />
+    <!-- /ko -->
+</div>

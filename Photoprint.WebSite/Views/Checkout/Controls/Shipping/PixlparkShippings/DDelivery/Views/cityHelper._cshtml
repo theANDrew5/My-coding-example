@@ -1,0 +1,15 @@
+@using RazorEngine
+@inherits RazorEngine.Templating.TemplateBase<Photoprint.WebSite.API.Controllers.DDeliveryCityInfo>
+@if (Model.Cities != null) {
+	foreach (var city in Model.Cities) {
+		<li>
+			@{ var className = Model.SelectedCity != null && Model.SelectedCity.Id == city.Id ? "active" : null; }
+			<a href="javascript:void(0)" data-id="@city.Id" class="@className">
+				<strong>@(string.Format("{0}. {1}", city.Type, city.Name))</strong>
+				@if (city.Name != city.Region){
+					@city.Region
+				}
+			</a>
+		</li>
+	}
+}

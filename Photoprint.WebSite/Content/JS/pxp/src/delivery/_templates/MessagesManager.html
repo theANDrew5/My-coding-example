@@ -1,0 +1,16 @@
+﻿<!-- ko foreach: infoMessages -->
+<div class="pxp-alert-container" data-bind="visible: call">
+    <span class="pxp-alert pxp-alert-info" data-bind="html: text">
+    </span>
+</div>
+<!-- /ko -->
+<!-- ko foreach: warningsMessages -->
+<div class="pxp-alert-container" data-bind="visible: call">
+    <span class="pxp-alert pxp-alert-warning" data-bind="html: text"></span>
+</div>
+<!-- /ko -->
+<!-- ko foreach: errorMessages -->
+<div class="pxp-alert-container" data-bind="visible: call">
+    <span class="pxp-alert pxp-alert-error" data-bind="html: text"></span>
+</div>
+<!-- /ko -->

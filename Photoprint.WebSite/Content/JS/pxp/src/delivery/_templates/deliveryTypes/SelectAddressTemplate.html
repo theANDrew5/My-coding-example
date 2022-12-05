@@ -1,0 +1,39 @@
+<h3 data-bind="html: loc_addressRecipientTitle"></h3>
+<div class="delivery-view-container_courier">
+    <div data-bind="template: { name: 'pxp__deliveryManager__address', data: address }"></div>
+    <div class="delivery-view-map-container courier">
+        <!-- ko with: map -->
+        <!-- ko if: isYandexMap -->
+        <div data-bind="ymapCourierPoint"></div>
+        <!-- /ko -->
+        <!-- ko if: isGoogleMap -->
+        <div data-bind="gmapCourierPoint"></div>
+        <!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>
+
+<!-- ko if: isShippingsVisible -->
+<h3 data-bind="html: loc_deliverySelection"></h3>
+<div class="delivery-selection-couriers-block" data-bind="foreach: allPoints">
+    <!-- ko if: isVisible -->
+    <div class="delivery-selection-couriers-block_courier" data-bind="click: $parent.selectShipping, css:{'delivery-selection-couriers-block_courier_selected': isSelected}, class: $parent.selectorItemClass">
+        <div class="delivery-selection-couriers-block_courier-title" data-bind="html: title"></div>
+        <div>
+            <span class="delivery-selection-couriers-block_courier-info-title">
+                <span data-bind="html: loc_priceTitle"></span>&#58;
+            </span>
+            <span style="font-weight: 700" data-bind="html: priceText"></span>
+        </div>
+        <!-- ko if: isShippingDescriptionVisible -->
+        <div>
+            <span class="delivery-selection-couriers-block_courier-info-title">
+                <span data-bind="html: loc_descriptionTitle"></span>&#58;
+            </span>
+            <span data-bind="html: shippingDescription"></span>
+        </div>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>
+<!-- /ko -->

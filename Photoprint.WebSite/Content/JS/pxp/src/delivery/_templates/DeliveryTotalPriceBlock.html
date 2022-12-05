@@ -1,0 +1,37 @@
+<div data-bind="css: { 'loading-wheel': isPriceInUpdate }">
+    <div class="delivery__total-price-block__info-header" data-bind="html: loc_yourOrder"></div>
+    <div>
+        <div class="delivery__total-price-block__info-row">
+            <div class="delivery__total-price-block__info-row__name" data-bind="html: loc_shoppingCartPrice"></div>
+            <div class="delivery__total-price-block__info-row__price" data-bind="html: shoppingCartPriceFormatted"></div>
+        </div>
+        <!-- ko if: isGoodsDiscountVisible -->
+        <div class="delivery__total-price-block__info-row">
+            <div class="delivery__total-price-block__info-row__name" data-bind="html: loc_goodsDiscount"></div>
+            <div class="delivery__total-price-block__info-row__price" style="color: red" data-bind="html: goodsDiscountPriceFormatted"></div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: isDeliveryCostVisible -->
+        <div class="delivery__total-price-block__info-row">
+            <div class="delivery__total-price-block__info-row__name" data-bind="html: loc_deliveryPrice"></div>
+            <div class="delivery__total-price-block__info-row__price" data-bind="html: deliveryCostFormatted"></div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: isDeliveryDiscountVisible -->
+        <div class="delivery__total-price-block__info-row">
+            <div class="delivery__total-price-block__info-row__name" data-bind="html: loc_shippingDiscount"></div>
+            <div class="delivery__total-price-block__info-row__price" style="color: red" data-bind="html: deliveryDiscountPriceFormatted"></div>
+        </div>
+        <!-- /ko -->
+        <div class="delivery__total-price-block__info-row final_info">
+            <div class="delivery__total-price-block__info-row__name" style="font-weight: 800; font-size: 20px;" data-bind="html: loc_totalPrice"></div>
+            <div class="delivery__total-price-block__info-row__price" style="font-weight: 600; font-size: 18px;" data-bind="html: totalPriceFormatted"></div>
+        </div>
+    </div>
+    <input type="button" class="btn delivery__total-price-block__btn" data-bind="enable: isCreateOrderButtonEnable, value: loc_createOrder, click: createOrder" />
+    <!-- ko if: showLinkToBackInShoppingCart -->
+    <div class="delivery__total-price-block__go-to-shopping-cart ">
+        <a data-bind="attr: { href: linkToBackInShoppingCart }, html: loc_goToShoppingCart"></a>
+    </div>
+    <!-- /ko -->
+</div>

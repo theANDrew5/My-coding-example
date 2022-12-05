@@ -1,0 +1,35 @@
+﻿@using System.Linq
+@using RazorEngine
+@using RazorEngine.Text
+@inherits RazorEngine.Templating.TemplateBase<System.Collections.Generic.IEnumerable<Photoprint.Core.Models.DDelivery.DDeliveryCalculatorResult>>
+<ul class="clearfix">
+	@if (Model.Any())
+	{
+		foreach (var company in Model)
+		{
+			var logo = string.Format("/Views/Checkout/Controls/Shipping/PixlparkShippings/DDelivery/tems/default/img/logo/{0}_1.png", company.Ico ?? "pack");
+			var logoBig = string.Format("/Views/Checkout/Controls/Shipping/PixlparkShippings/DDelivery/tems/default/img/logo/{0}.png", company.Ico ?? "pack");
+			<li>
+				<a title="@company.DeliveryCompanyName" href="javascript:void(0)" data-id="@company.DeliveryCompany" class="clearfix border">
+					<span class="img">
+						<img src="@logo" alt="@company.DeliveryCompanyName" />
+						<img class="big" src="@logoBig" alt="@company.DeliveryCompanyName" />
+					</span>
+					<span class="price">@company.TotalPriceCorrected <i class="icon-rub">&nbsp;</i></span>
+					<span class="date">
+						<strong>@company.DeliveryTimeMinCorrected</strong> дн.
+					</span>
+					<i class="shadow">&nbsp;</i>
+				</a>
+			</li>
+		}
+	}
+	else
+	{
+		<li>
+			<div style="text-align: center">
+				Извините, этот способ доставки не доступен для выбранного города.
+			</div>
+		</li>
+	}
+</ul>

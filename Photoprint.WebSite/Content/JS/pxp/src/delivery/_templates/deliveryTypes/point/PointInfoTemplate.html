@@ -1,0 +1,42 @@
+﻿<h3 data-bind="html: $parent.loc_pointSelectedTitle"></h3>
+<div class="delivery-selected-point">
+    <div class="delivery-selected-point-data">
+        <span class="delivery-selected-point-data__info-title">
+            <span data-bind="html: loc_addressTitle"></span>&#58;
+        </span>
+        <span style="font-weight: 700" data-bind="html: address"></span>
+        <span>
+            &nbsp;&#40;<a class="delivery-selected-point_show-on-map-link" data-bind="click: $parent.showOnTheMap, html: $parent.loc_showOnTheMap"></a>&#41;
+        </span>
+    </div>
+    <div class="delivery-selected-point-data">
+        <span class="delivery-selected-point-data__info-title">
+            <span data-bind="html: loc_priceTitle"></span>&#58;
+        </span>
+        <span style="font-weight: 700" data-bind="html: priceText"></span>
+    </div>
+    <!-- ko ifnot: isDescriptionEmpty -->
+    <div class="delivery-selected-point-data">
+        <span class="delivery-selected-point-data__info-title">
+            <span data-bind="html: loc_descriptionTitle"></span>&#58;
+        </span>
+        <span data-bind="html: description"></span>
+    </div>
+    <!-- /ko -->
+    <!-- ko ifnot: isWorkTimeEmpty -->
+    <div class="delivery-selected-point-data">
+        <span class="delivery-selected-point-data__info-title">
+            <span data-bind="html: loc_workTimeTitle"></span>&#58;
+        </span>
+        <span data-bind="html: workTime"></span>
+    </div>
+    <!-- /ko -->
+    <!-- ko ifnot: isPhoneEmpty -->
+    <div class="delivery-selected-point-data">
+        <span class="delivery-selected-point-data__info-title">
+            <span data-bind="html: loc_phoneTitle"></span>&#58;
+        </span>
+        <span data-bind="html: phone"></span>
+    </div>
+    <!-- /ko -->
+</div>

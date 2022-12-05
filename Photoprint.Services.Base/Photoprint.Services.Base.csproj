@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningsAsErrors>$(WarningsAsErrors);NU1605;CS0649</WarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningsAsErrors>$(WarningsAsErrors);NU1605;CS0649</WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Photoprint.Core\Photoprint.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ImageTools\" />
+    <Folder Include="Infrastructure\Youtrack\DTO\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NGitLab" Version="6.28.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.2" />
+    <PackageReference Include="System.Collections.Immutable" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>

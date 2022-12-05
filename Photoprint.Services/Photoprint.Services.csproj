@@ -1,0 +1,1350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Scriban.5.4.4\build\Scriban.props" Condition="Exists('..\..\packages\Scriban.5.4.4\build\Scriban.props')" />
+  <Import Project="..\..\packages\Microsoft.ML.OnnxRuntime.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props" Condition="Exists('..\..\packages\Microsoft.ML.OnnxRuntime.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props')" />
+  <Import Project="..\..\packages\PdfiumViewer.Native.x86_64.v8-xfa.2017.12.4.236\build\PdfiumViewer.Native.x86_64.v8-xfa.props" Condition="Exists('..\..\packages\PdfiumViewer.Native.x86_64.v8-xfa.2017.12.4.236\build\PdfiumViewer.Native.x86_64.v8-xfa.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B282EEED-C578-4AE6-B46F-0A02FD5AF0A0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Photoprint.Services</RootNamespace>
+    <AssemblyName>Photoprint.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <CodePage>1251</CodePage>
+    <NoWarn>CS0618</NoWarn>
+    <WarningsAsErrors>CS0649</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodePage>1251</CodePage>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aurigma.GraphicsMill, Version=6.0.8.337, Culture=neutral, PublicKeyToken=f4bbbf243f314012, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Aurigma.GraphicsMill.dll</HintPath>
+    </Reference>
+    <Reference Include="Aurigma.GraphicsMill.AjaxControls, Version=6.0.0.0, Culture=neutral, PublicKeyToken=f4bbbf243f314012, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Aurigma.GraphicsMill.AjaxControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Aurigma.GraphicsMill.AjaxControls.VectorObjects, Version=6.0.0.0, Culture=neutral, PublicKeyToken=f4bbbf243f314012, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Aurigma.GraphicsMill.AjaxControls.VectorObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="Dadata, Version=21.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Dadata.21.12.0\lib\netstandard2.0\Dadata.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EasyNetQ, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8b1766e46498eb4b, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EasyNetQ.7.3.3\lib\netstandard2.0\EasyNetQ.dll</HintPath>
+    </Reference>
+    <Reference Include="Elasticsearch.Net, Version=6.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Elasticsearch.Net.6.4.0\lib\net461\Elasticsearch.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.3, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPPlus.4.5.3.3\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="ExCSS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ExCSS.4.1.0\lib\net48\ExCSS.dll</HintPath>
+    </Reference>
+    <Reference Include="FaceONNX">
+      <HintPath>..\..\lib\FaceONNX\FaceONNX.dll</HintPath>
+    </Reference>
+    <Reference Include="FirebaseAdmin, Version=1.7.0.0, Culture=neutral, PublicKeyToken=97c8d00c348326ed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FirebaseAdmin.1.7.0\lib\net45\FirebaseAdmin.dll</HintPath>
+    </Reference>
+    <Reference Include="Flurl, Version=2.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Flurl.2.8.2\lib\net40\Flurl.dll</HintPath>
+    </Reference>
+    <Reference Include="Flurl.Http, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Flurl.Http.2.4.2\lib\net46\Flurl.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Api.Gax, Version=2.7.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Api.Gax.2.7.0\lib\net45\Google.Api.Gax.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Api.Gax.Rest, Version=2.7.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Api.Gax.Rest.2.7.0\lib\net45\Google.Api.Gax.Rest.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.54.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.1.54.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.54.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Auth.1.54.0\lib\net461\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.54.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Auth.1.54.0\lib\net461\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.54.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Core.1.54.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Drive.v3, Version=1.54.0.2397, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Drive.v3.1.54.0.2397\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.54.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.1.54.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.34.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HtmlAgilityPack.1.11.34\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="integration">
+      <HintPath>..\..\lib\integration.dll</HintPath>
+    </Reference>
+    <Reference Include="IP2Location, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\IP2Location.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xtra, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\itextsharp.xtra.5.5.13\lib\itextsharp.xtra.dll</HintPath>
+    </Reference>
+    <Reference Include="Iyzipay">
+      <HintPath>..\..\lib\IyzicoApi\Iyzipay.dll</HintPath>
+    </Reference>
+    <Reference Include="MaxMind.Db, Version=2.0.0.0, Culture=neutral, PublicKeyToken=66afa4cc5ae853ac, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MaxMind.Db.3.0.0\lib\net461\MaxMind.Db.dll</HintPath>
+    </Reference>
+    <Reference Include="MaxMind.GeoIP2, Version=3.0.0.0, Culture=neutral, PublicKeyToken=66afa4cc5ae853ac, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MaxMind.GeoIP2.3.3.0\lib\net45\MaxMind.GeoIP2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNetCore.WebUtilities.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.DependencyInjection.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Logging.6.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Options.6.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Primitives.6.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.JsonWebTokens.6.17.0\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.Logging.6.17.0\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.Tokens.6.17.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IO.RecyclableMemoryStream.2.2.0\lib\net462\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ML.OnnxRuntime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=f27f157f0a5b7bb6, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ML.OnnxRuntime.Managed.1.7.0\lib\netstandard1.1\Microsoft.ML.OnnxRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.8.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.Headers.2.2.8\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="NCalc, Version=3.5.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CoreCLR-NCalc.2.2.101\lib\net45\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="Nest, Version=6.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NEST.6.4.0\lib\net461\Nest.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NGitLab, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NGitLab.6.28.0\lib\net461\NGitLab.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.5.0.0\lib\net46\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalCoreSDK, Version=1.7.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PayPalCoreSDK.1.7.1\lib\net451\PayPalCoreSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalMerchantSDK, Version=2.16.250.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PayPalMerchantSDK.2.16.250\lib\net20\PayPalMerchantSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="paypal_base">
+      <HintPath>..\..\lib\paypal_base.dll</HintPath>
+    </Reference>
+    <Reference Include="PDFClown, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PDFClown.NET.2.0.0\lib\PDFClown.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfiumViewer, Version=2.13.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PdfiumViewer.2.13.0.0\lib\net20\PdfiumViewer.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="Pipelines.Sockets.Unofficial, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42ea0a778e13fbe2, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Pipelines.Sockets.Unofficial.2.2.2\lib\net472\Pipelines.Sockets.Unofficial.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PuppeteerSharp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=db12f80f85d8ba23, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PuppeteerSharp.4.0.0\lib\netstandard2.0\PuppeteerSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=6.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RabbitMQ.Client.6.4.0\lib\net461\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="RedLockNet.Abstractions, Version=2.3.1.0, Culture=neutral, PublicKeyToken=1dffde0a6c007f07, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RedLock.net.2.3.1\lib\net472\RedLockNet.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="RedLockNet.SERedis, Version=2.3.1.0, Culture=neutral, PublicKeyToken=1dffde0a6c007f07, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RedLock.net.2.3.1\lib\net472\RedLockNet.SERedis.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.Serializers.NewtonsoftJson, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RestSharp.Serializers.NewtonsoftJson.106.11.7\lib\net452\RestSharp.Serializers.NewtonsoftJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Scriban, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Scriban.5.4.4\lib\netstandard2.0\Scriban.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serilog.2.11.0\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\StackExchange.Redis.2.5.61\lib\net472\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe.net, Version=35.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Stripe.net.35.8.0\lib\net45\Stripe.net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Collections.Immutable.6.0.0\lib\net461\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Console, Version=4.0.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Console.4.3.1\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.PerformanceCounter, Version=6.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Diagnostics.PerformanceCounter.6.0.1\lib\net461\System.Diagnostics.PerformanceCounter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Drawing.Common.6.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IdentityModel.Tokens.Jwt.6.17.0\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Interactive.Async, Version=6.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Interactive.Async.6.0.1\lib\net48\System.Interactive.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=6.0.0.3, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.Pipelines.6.0.3\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq.Async, Version=6.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Linq.Async.6.0.1\lib\net48\System.Linq.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.8\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.Extensions.4.3.1\lib\net462\System.Runtime.Extensions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.InteropServices.4.3.0\lib\net463\System.Runtime.InteropServices.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.6, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Json.6.0.6\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Channels.6.0.0\lib\net461\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.8\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Xml.ReaderWriter.4.3.1\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Thought.vCards, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Thought.vCards.1.0.9\lib\net40\Thought.vCards.dll</HintPath>
+    </Reference>
+    <Reference Include="Typography.OpenFont, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Typography.OpenFont.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="zxing, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ZXing.Net.0.16.5\lib\net48\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ZXing.Net.0.16.5\lib\net48\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Addresses\BaseProviderInterfaces\Delivery\IDeliveryCityAddressProvider.cs" />
+    <Compile Include="Addresses\BaseProviderInterfaces\Delivery\IDeliveryStreetAddressProvider.cs" />
+    <Compile Include="Addresses\CityAddressFactory.cs" />
+    <Compile Include="Addresses\Dadata\DadataService.cs" />
+    <Compile Include="Addresses\Google\GoogleCityProvider.cs" />
+    <Compile Include="Addresses\Google\GoogleStreetProvider.cs" />
+    <Compile Include="Addresses\Google\GoogleSuggestProvider.cs" />
+    <Compile Include="Addresses\AddressFactory.cs" />
+    <Compile Include="Addresses\SuggestFactory.cs" />
+    <Compile Include="Addresses\VK\VkCity.cs" />
+    <Compile Include="Addresses\VK\GetCitiesParameters.cs" />
+    <Compile Include="Addresses\BaseProviderInterfaces\ICityAddressProvider.cs" />
+    <Compile Include="Addresses\VK\VkLanguage.cs" />
+    <Compile Include="Addresses\VK\VkontakteCityProvider.cs" />
+    <Compile Include="Addresses\DataTranslator.cs" />
+    <Compile Include="Addresses\Yandex\YandexCityProvider.cs" />
+    <Compile Include="Addresses\Yandex\YandexStreetProvider.cs" />
+    <Compile Include="Addresses\Yandex\YandexSuggestProvider.cs" />
+    <Compile Include="Analytics\GoogleAnalyticsService.cs" />
+    <Compile Include="Analytics\YandexMetricsService.cs" />
+    <Compile Include="ASystem\ASystemApiBaseService.cs" />
+    <Compile Include="ASystem\ASystemApiPriceService.cs" />
+    <Compile Include="ASystem\ASystemApiTemplateService.cs" />
+    <Compile Include="ASystem\ASystemService.cs" />
+    <Compile Include="ASystem\ASystemStateService.cs" />
+    <Compile Include="ASystem\ASystemSyncService.cs" />
+    <Compile Include="ASystem\Request\RecalcByQtyRequest.cs" />
+    <Compile Include="ASystem\Response\RecalcByQtyResponse.cs" />
+    <Compile Include="ASystem\Response\TemplateCalcResponse.cs" />
+    <Compile Include="ASystem\Response\TestConnectionResponse.cs" />
+    <Compile Include="Axiom\AxiomApiBaseService.cs" />
+    <Compile Include="Axiom\AxiomApiTemplateService.cs" />
+    <Compile Include="Axiom\AxiomApiPriceService.cs" />
+    <Compile Include="Axiom\AxiomService.cs" />
+    <Compile Include="Axiom\AxiomStateService.cs" />
+    <Compile Include="Axiom\AxiomSyncService.cs" />
+    <Compile Include="BaseStateService.cs" />
+    <Compile Include="Bitrix24\BitrixBaseService.cs" />
+    <Compile Include="Bitrix24\BitrixCompanyService.cs" />
+    <Compile Include="Bitrix24\BitrixLeadService.cs" />
+    <Compile Include="Bitrix24\BitrixOrderService.cs" />
+    <Compile Include="Bitrix24\BitrixUserService.cs" />
+    <Compile Include="CalendarService.cs" />
+    <Compile Include="Checkout\ShippingService.cs" />
+    <Compile Include="Checkout\ShoppingCartExportService.cs" />
+    <Compile Include="Chromium\ChromiumRenderer.cs" />
+    <Compile Include="CloneServices\PrintingModule\DemoPrintingModuleCloneService.cs" />
+    <Compile Include="CustomWork\Utils\MaterialEditorSizeUtils.cs" />
+    <Compile Include="Editors\Calculation\AxiomEditorCalculationService.cs" />
+    <Compile Include="Editors\Calculation\HelloPrintEditorCalculationService.cs" />
+    <Compile Include="Editors\Calculation\Poly1CEditorCalculationService.cs" />
+    <Compile Include="Editors\Calculation\EditorCalculationService.cs" />
+    <Compile Include="Editors\Calculation\AsystemEditorCalculationService.cs" />
+    <Compile Include="Editors\Calculation\PxpEditorCalculationService.cs" />
+    <Compile Include="Editors\Canvas\Utils\BaseEditorHelper.cs" />
+    <Compile Include="Editors\Canvas\Models\CanvasHash.cs" />
+    <Compile Include="Editors\Canvas\Models\FilesReaderWriterLocker.cs" />
+    <Compile Include="Editors\Canvas\Models\Options\BaseEditor3DApproveImage.cs" />
+    <Compile Include="Editors\Canvas\Models\Options\BaseEditor3DPreviewResult.cs" />
+    <Compile Include="Editors\Canvas\Models\Options\BaseEditorApproveImage.cs" />
+    <Compile Include="Editors\Canvas\Models\Options\BaseObjectOptions.cs" />
+    <Compile Include="Editors\Canvas\Models\Options\ImageObjectOptions.cs" />
+    <Compile Include="Editors\Canvas\Models\Options\PlaceholderObjectOptions.cs" />
+    <Compile Include="Editors\Canvas\Models\Options\TextObjectOptions.cs" />
+    <Compile Include="Editors\Canvas\Models\RealtimeEditorState.cs" />
+    <Compile Include="Editors\Canvas\Models\RealtimeEditorStateManager.cs" />
+    <Compile Include="Editors\Canvas\Utils\HelpLines.cs" />
+    <Compile Include="Editors\EditorService.cs" />
+    <Compile Include="Editors\Vector\ContentResolvers\ClipartResolver.cs" />
+    <Compile Include="Editors\Vector\ContentResolvers\FlatIconResolver.cs" />
+    <Compile Include="Editors\Vector\ContentResolvers\FontResolver.cs" />
+    <Compile Include="Editors\Vector\ContentResolvers\PixibayResover.cs" />
+    <Compile Include="Editors\Vector\ContentResolvers\StaticBackgroundImageResolver.cs" />
+    <Compile Include="Editors\Vector\ContentResolvers\ProductCoverImageResolver.cs" />
+    <Compile Include="Editors\Vector\ContentResolvers\TemplateResolver.cs" />
+    <Compile Include="Editors\Vector\ContentResolvers\UserImageResolver.cs" />
+    <Compile Include="Editors\Vector\Models\ImageCalendarInfo.cs" />
+    <Compile Include="Editors\Vector\Models\VectorEditorPoint.cs" />
+    <Compile Include="Editors\Vector\PdfTools.cs" />
+    <Compile Include="Editors\Vector\Renderer\VectorEditorPreviewRenderer.cs" />
+    <Compile Include="Editors\Vector\Renderer\PDFTools.cs" />
+    <Compile Include="Editors\Vector\Renderer\VectorEditorPrintRenderer.cs" />
+    <Compile Include="Editors\Vector\Renderer\VectorEditorRendererBase.cs" />
+    <Compile Include="Editors\Vector\VectorEditorContentResolverService.cs" />
+    <Compile Include="Editors\Vector\VectorEditorConverterService.cs" />
+    <Compile Include="Editors\Vector\VectorEditorRenderService.cs" />
+    <Compile Include="Editors\Vector\VectorEditorSVGTools.cs" />
+    <Compile Include="ExternalServices\Cloud\CloudMailService.cs" />
+    <Compile Include="ExternalServices\Cloud\DropboxService.cs" />
+    <Compile Include="ExternalServices\Cloud\GoogleDriveService.cs" />
+    <Compile Include="Fonts\FontMappingsService.cs" />
+    <Compile Include="Fonts\FontRenderService.cs" />
+    <Compile Include="HelloPrint\HelloPrintStateService.cs" />
+    <Compile Include="HtmlToPdf\AdditionalPaperFormat.cs" />
+    <Compile Include="HtmlToPdf\HtmlToPdfRenderer.cs" />
+    <Compile Include="Imaging\ExifTool.cs" />
+    <Compile Include="HelloPrint\HelloPrintApiBaseService.cs" />
+    <Compile Include="HelloPrint\HelloPrintApiCalculatorService.cs" />
+    <Compile Include="HelloPrint\HelloPrintApiDataService.cs" />
+    <Compile Include="HelloPrint\HelloPrintApiOrderService.cs" />
+    <Compile Include="HelloPrint\HelloPrintApiPriceCalculationService.cs" />
+    <Compile Include="HelloPrint\HelloPrintService.cs" />
+    <Compile Include="HelloPrint\HelloPrintSyncService.cs" />
+    <Compile Include="Imaging\ImageFillmentService.cs" />
+    <Compile Include="Imaging\PSD\ImageUtils.cs" />
+    <Compile Include="Imaging\PSD\PsdParser.cs" />
+    <Compile Include="Imaging\PSD\PsdTemplateHelper.cs" />
+    <Compile Include="Infrastructure\Network\NetworkFile.cs" />
+    <Compile Include="Infrastructure\Network\NetworkFileDownloader.cs" />
+    <Compile Include="Infrastructure\Network\NetworkInMemoryFile.cs" />
+    <Compile Include="Infrastructure\Network\NetworkInTempFile.cs" />
+    <Compile Include="Infrastructure\PixlparkFeedbackService.cs" />
+    <Compile Include="Infrastructure\RateLimiter\CountByIntervalAwaitableConstraint.cs" />
+    <Compile Include="Infrastructure\RateLimiter\DisposableAction.cs" />
+    <Compile Include="Infrastructure\RateLimiter\IAwaitableConstraint.cs" />
+    <Compile Include="Infrastructure\RateLimiter\LimitedSizeStack.cs" />
+    <Compile Include="Infrastructure\RateLimiter\RateLimiter.cs" />
+    <Compile Include="Infrastructure\UserAgentService.cs" />
+    <Compile Include="Merch\ContentResolvers\ClipartMerchResolver.cs" />
+    <Compile Include="Merch\ContentResolvers\ProductCoverImageMerchResolver.cs" />
+    <Compile Include="Merch\ContentResolvers\StaticBackgroundImageMerchResolver.cs" />
+    <Compile Include="Merch\ContentResolvers\TemplateMerchResolver.cs" />
+    <Compile Include="Merch\MerchContentResolverService.cs" />
+    <Compile Include="Merch\MerchFileService.cs" />
+    <Compile Include="Merch\MerchSVGTools.cs" />
+    <Compile Include="Notifications\Push\PushNotificationService.cs" />
+    <Compile Include="Notifications\Push\PushSchedulerService.cs" />
+    <Compile Include="Notifications\Mail\MailSenderService.cs" />
+    <Compile Include="Notifications\Mail\MailUnsubscribeGenerator.cs" />
+    <Compile Include="Notifications\Mail\Sendsay\Requests\SendsayCallbackRequest.cs" />
+    <Compile Include="Notifications\Mail\SmtpMailSenderService.cs" />
+    <Compile Include="Materials\FrontendMaterialPriceService.cs" />
+    <Compile Include="Materials\MaterialPriceService.cs" />
+    <Compile Include="Merch\Render\MerchPrintReadyFileRenderer.cs" />
+    <Compile Include="Merch\Render\MerchRendererService.cs" />
+    <Compile Include="MobileAppSettings\Services\MobileAppRegistrationService.cs" />
+    <Compile Include="MobileAppSettings\Services\MobileAppUserAuthentificationService.cs" />
+    <Compile Include="Merch\MerchVariantService.cs" />
+    <Compile Include="Merch\Render\MerchPreviewRenderer.cs" />
+    <Compile Include="Notifications\BillingNotificationService.cs" />
+    <Compile Include="Notifications\Sms\SmsSenderService.cs" />
+    <Compile Include="Notifications\SystemNotificationService.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\BookXml\BookItem\IBookXmlGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\BookXml\BookItem\NetprintBaseBookXmlGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\BookXml\BookItem\NetprintBookOnDemandBookXmlGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\BookXml\BookItem\NetprintDefaultEditorBookXmlGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\BookXml\BookItem\NetprintPhotobookOnDemandBookXmlGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\BookXml\BookItem\NetprintPhotoEditorBookXmlGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\BookXml\BookItem\NetprintBookXmlItemFactory.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\Helpers\FileLinkType.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\Helpers\GiftOperationEntity.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\Helpers\OrderNumberResponse.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\Helpers\ReferenceIndexer.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\BookXml\NetprintBookXmlGenerateService.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderJson\NetprintBackofficeItemGenerateService.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderJson\NetprintBackofficeItemsPartGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderJson\Operations\BackofficeItem\IBackofficeItemGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderJson\Operations\BackofficeItem\NetprintBackofficeItemFactory.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderJson\Operations\BackofficeItem\NetprintBookOnDemandBackofficeItemGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderJson\Operations\BackofficeItem\NetprintCustomWorkItemGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderJson\Operations\BackofficeItem\NetprintSingleBackofficeItemGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderJson\Operations\NetprintBaseBackofficeItemByCartItemGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintBaseComplexEditorOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Helpers\NetprintNetworkService.cs" />
+    <Compile Include="Orders\Netprint\Helpers\NetprintSkuSettingsService.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\NetprintDeliveryPartXmlGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\NetprintFilesPartXmlGenerator.cs" />
+    <Compile Include="Orders\Netprint\Base\NetprintIntegrationBaseService.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\NetprintOperationsPartXmlGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\NetprintOrderXmlGenerateService.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\IOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\NetprintBaseOperationByCartItemGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\NetprintBaseOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Base\NetprintBaseService.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintBookOnDemandOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintCanvasOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintCustomWorkOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintGiftOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintMockupOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintNotificationOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintOperationItemFactory.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintPhotobookOnDemandOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintPhotoEditorOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintSingleMockupOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\Backoffice\OrderXml\Operations\OperationItem\NetprintVectorEditorOperationGenerator.cs" />
+    <Compile Include="Orders\Netprint\OrderNetprintAuxillaryService.cs" />
+    <Compile Include="Orders\Netprint\OrderNetprintJsonExportService.cs" />
+    <Compile Include="Orders\Netprint\OrderNetprintExportService.cs" />
+    <Compile Include="Orders\Netprint\OrderNetprintWorkflowService.cs" />
+    <Compile Include="Orders\OrderAddressService.cs" />
+    <Compile Include="Orders\OrderCloneService.cs" />
+    <Compile Include="Orders\OrderDetailExportService.cs" />
+    <Compile Include="Orders\OrderExportTemplateService.cs" />
+    <Compile Include="Orders\OrderInvoiceTemplateService.cs" />
+    <Compile Include="Orders\OrderPreviewService.cs" />
+    <Compile Include="Orders\Statistics\OrderStatisticsServiceNew.cs" />
+    <Compile Include="Orders\Statistics\TemplateStatisticsService.cs" />
+    <Compile Include="PaymentCard\PaymentCardExportService.cs" />
+    <Compile Include="Payment\CloudPaymentService.cs" />
+    <Compile Include="Payment\Common\FiscalService.cs" />
+    <Compile Include="Payment\Common\PaymentProviderResolverService.cs" />
+    <Compile Include="Payment\Common\ProcessPaymentService.cs" />
+    <Compile Include="Payment\EgoPaymentService.cs" />
+    <Compile Include="Payment\EveryPayService.cs" />
+    <Compile Include="Payment\LiqPaymentService.cs" />
+    <Compile Include="Payment\MyFatoorahPaymentService.cs" />
+    <Compile Include="Payment\PaytrailService.cs" />
+    <Compile Include="Payment\Receipt\SberbankReceiptService.cs" />
+    <Compile Include="Payment\RedsysService.cs" />
+    <Compile Include="Payment\ProdamusPaymentService.cs" />
+    <Compile Include="Payment\SberPayQRService.cs" />
+    <Compile Include="Payment\ShurjoPaymentService.cs" />
+    <Compile Include="CloneServices\CloneRegexHelper.cs" />
+    <Compile Include="CloneServices\CmsModuleCloneService.cs" />
+    <Compile Include="CloneServices\DiscountCloneService.cs" />
+    <Compile Include="CloneServices\FaqModuleCloneService.cs" />
+    <Compile Include="CloneServices\FrontendSettingsCloneService.cs" />
+    <Compile Include="CloneServices\CloneLogHelper.cs" />
+    <Compile Include="CloneServices\NewsCloneService.cs" />
+    <Compile Include="CloneServices\NotificationCloneService.cs" />
+    <Compile Include="CloneServices\PrintingModule\PrintingModuleCloneService.cs" />
+    <Compile Include="CloneServices\ShippingCloneService.cs" />
+    <Compile Include="CloneServices\ShopModuleCloneService.cs" />
+    <Compile Include="CloneServices\SuppliersCloneService.cs" />
+    <Compile Include="CloneServices\WebModuleCloneService.cs" />
+    <Compile Include="CustomMessageTemplateService.cs" />
+    <Compile Include="CustomWork\CustomWorkCloneService.cs" />
+    <Compile Include="CustomWork\CustomWorkHandlingService.cs" />
+    <Compile Include="Editors\Canvas\Renderers\CanvasRenderServiceBase.cs" />
+    <Compile Include="Editors\Canvas\Utils\CanvasRendererUtils.cs" />
+    <Compile Include="Editors\Canvas\Renderers\NewCanvasPDFRenderer.cs" />
+    <Compile Include="Editors\Vector\Models\BaseObject.cs" />
+    <Compile Include="Editors\Vector\Models\Group.cs" />
+    <Compile Include="Editors\Vector\Models\Image.cs" />
+    <Compile Include="Editors\Vector\Models\ObjectType.cs" />
+    <Compile Include="Editors\Vector\Models\Text.cs" />
+    <Compile Include="Editors\Vector\VectorEditorService.cs" />
+    <Compile Include="Editors\Vector\VectorEditorTemplateConverter.cs" />
+    <Compile Include="ExternalServices\Cloud\YandexDiskService.cs" />
+    <Compile Include="ExternalServices\Pixabay\PixabayService.cs" />
+    <Compile Include="Feedbacks\FeedbackExportService.cs" />
+    <Compile Include="CustomNotificationService.cs" />
+    <Compile Include="FileParsers\ExcelToXmlParserService.cs" />
+    <Compile Include="FileParsers\ResourceValue.cs" />
+    <Compile Include="FileParsers\XmlToExcelParserService.cs" />
+    <Compile Include="Fonts\Google\GoogleFontFamilyApiInfo.cs" />
+    <Compile Include="Fonts\Google\GoogleFontProviderServices.cs" />
+    <Compile Include="Fonts\Google\GoogleFontVariantApiInfo.cs" />
+    <Compile Include="Fonts\Google\GoogleGetFontFamiliesResult.cs" />
+    <Compile Include="AdmitadService.cs" />
+    <Compile Include="BlockService.cs" />
+    <Compile Include="Cache\CacheManager.cs" />
+    <Compile Include="Cache\RedisClearCacheMessage.cs" />
+    <Compile Include="Cache\SystemCommunicationService.cs" />
+    <Compile Include="Checkout\DiscountWorkflowService.cs" />
+    <Compile Include="Checkout\BukhsoftService.cs" />
+    <Compile Include="Checkout\FrontendDiscountService.cs" />
+    <Compile Include="Checkout\FrontendPaymentService.cs" />
+    <Compile Include="Checkout\FrontendShippingPriceService.cs" />
+    <Compile Include="Checkout\FrontendShippingService.cs" />
+    <Compile Include="Checkout\ShippingPriceService.cs" />
+    <Compile Include="Cliparts\ClipartService.cs" />
+    <Compile Include="Cliparts\FrontendClipartService.cs" />
+    <Compile Include="Cliparts\FrontendClipartSetService.cs" />
+    <Compile Include="Devices\DevicePostProcessBase.cs" />
+    <Compile Include="Devices\DevicePostProcessPdf.cs" />
+    <Compile Include="Devices\DevicePostProcessRaster.cs" />
+    <Compile Include="Devices\DevicePostprocessService.cs" />
+    <Compile Include="DictionaryService.cs" />
+    <Compile Include="Editors\BookOnDemandEditorService.cs" />
+    <Compile Include="Editors\FrontendPrintOnDemandSolutionService.cs" />
+    <Compile Include="Editors\IndividualPhotobookEditorService.cs" />
+    <Compile Include="Editors\IndividualPhotobookRenderService.cs" />
+    <Compile Include="Editors\Canvas\Utils\CanvasMergeService.cs" />
+    <Compile Include="Editors\FileNamingService.cs" />
+    <Compile Include="Editors\MockupEditorService.cs" />
+    <Compile Include="Editors\PhotobookOnDemandEditorService.cs" />
+    <Compile Include="ElasticSearch\ElasticSuppliersService.cs" />
+    <Compile Include="ElasticSearch\ElasticBaseService.cs" />
+    <Compile Include="ElasticSearch\FrontendElasticSuppliersService.cs" />
+    <Compile Include="EntityListByIdsParams.cs" />
+    <Compile Include="Checkout\ShippingCalculatorService.cs" />
+    <Compile Include="Company\CompanyAccountBillingService.cs" />
+    <Compile Include="Devices\DeviceService.cs" />
+    <Compile Include="Checkout\PaymentCardGroupService.cs" />
+    <Compile Include="Checkout\PaymentCardService.cs" />
+    <Compile Include="CloneServices\CompanyCloneService.cs" />
+    <Compile Include="Company\CompanyAccountInvoiceService.cs" />
+    <Compile Include="Editors\Canvas\Renderers\CanvasRenderService.cs" />
+    <Compile Include="Editors\Canvas\Utils\CanvasServiceHelper.cs" />
+    <Compile Include="Editors\Canvas\Utils\BaseEditorUtilities.cs" />
+    <Compile Include="Editors\VRameService.cs" />
+    <Compile Include="Editors\PhotoEditorService.cs" />
+    <Compile Include="Editors\PrintOnDemandSolutionService.cs" />
+    <Compile Include="ExternalAuthenticationService.cs" />
+    <Compile Include="ExternalConsumersAuthorizationsService.cs" />
+    <Compile Include="ExternalServices\Clients\ExternalAuthenticationResult.cs" />
+    <Compile Include="ExternalServices\Clients\OAuthBaseClient.cs" />
+    <Compile Include="ExternalServices\CloudClientsFactory.cs" />
+    <Compile Include="ExternalServices\Facebook\BaseFacebookModel.cs" />
+    <Compile Include="ExternalServices\Facebook\FacebookClient.cs" />
+    <Compile Include="ExternalServices\Fotolab\FotoloabService.cs" />
+    <Compile Include="ExternalServices\Google\GoogleClient.cs" />
+    <Compile Include="ExternalServices\Instagram\InstagramClient.cs" />
+    <Compile Include="ExternalServices\Instagram\InstagramPhotoModel.cs" />
+    <Compile Include="ExternalServices\Odnoklassniki\OdnoklassnikiClient.cs" />
+    <Compile Include="ExternalServices\Odnoklassniki\OkBaseModel.cs" />
+    <Compile Include="ExternalServices\Vkontakte\VkontakteBaseModel.cs" />
+    <Compile Include="ExternalServices\Vkontakte\VkontakteClient.cs" />
+    <Compile Include="ExternalServices\Yandex\YandexClient.cs" />
+    <Compile Include="FeedbackProviders\MneniyaProService.cs" />
+    <Compile Include="Files\ExternalFileDownloadService.cs" />
+    <Compile Include="Files\FileUtilityService.cs" />
+    <Compile Include="FixService.cs" />
+    <Compile Include="ExternalServices\Yandex\YandexDiskClient.cs" />
+    <Compile Include="Fonts\FontFileService.cs" />
+    <Compile Include="Fonts\FontService.cs" />
+    <Compile Include="Fonts\Scope\IFontScopeService.cs" />
+    <Compile Include="Fonts\Scope\PhotolabFontSerivce.cs" />
+    <Compile Include="Fonts\Scope\SystemFontService.cs" />
+    <Compile Include="Fonts\Scope\CompanyAccountFontService.cs" />
+    <Compile Include="Fonts\Scope\UserFontService.cs" />
+    <Compile Include="Fonts\FontWoff2ConvertEngine.cs" />
+    <Compile Include="FormulaParserService.cs" />
+    <Compile Include="FrontendNotificationTemplateService.cs" />
+    <Compile Include="FrontendPortfolioCategoryService.cs" />
+    <Compile Include="FrontendTaxService.cs" />
+    <Compile Include="FrontendVariableService.cs" />
+    <Compile Include="GeoIP\GeoBaza\GeoBazaAPI.cs" />
+    <Compile Include="GeoIP\GeoBaza\JSONObject.cs" />
+    <Compile Include="Files\BaseFileService.cs" />
+    <Compile Include="GeoIP\Ip2LocationService.cs" />
+    <Compile Include="GeoIP\MindMaxService.cs" />
+    <Compile Include="Imaging\FaceDetectionService.cs" />
+    <Compile Include="Imaging\VectorObjectsFileStorage.cs" />
+    <Compile Include="Imaging\VectorObjectsConfiguration.cs" />
+    <Compile Include="InnerNotificationService.cs" />
+    <Compile Include="KonturElbaService.cs" />
+    <Compile Include="CustomWork\CustomWorkStateService.cs" />
+    <Compile Include="LogService.cs" />
+    <Compile Include="Materials\CustomProductService.cs" />
+    <Compile Include="CustomWork\FrontendCustomWorkService.cs" />
+    <Compile Include="Materials\FrontendMaterial3DPreviewModelService.cs" />
+    <Compile Include="Materials\FrontendMaterialService.cs" />
+    <Compile Include="Materials\FrontendMaterialTypeService.cs" />
+    <Compile Include="Materials\Material3DPreviewModelService.cs" />
+    <Compile Include="Materials\MaterialTypeStorageService.cs" />
+    <Compile Include="Materials\MaterialStorageService.cs" />
+    <Compile Include="Mindbox\MindboxService.cs" />
+    <Compile Include="MobileAppSettings\Settings\MobileAppCloneService.cs" />
+    <Compile Include="MobileAppSettings\Settings\MobileAppLocalizationService.cs" />
+    <Compile Include="MobileAppSettings\Settings\MobileAppLogoService.cs" />
+    <Compile Include="Notifications\Push\PushNotificationSendService.cs" />
+    <Compile Include="MobileAppSettings\Settings\MobileAppSettingsService.cs" />
+    <Compile Include="MobileAppSettings\Settings\MobileAppDeviceBindingService.cs" />
+    <Compile Include="Orders\CheckboxService.cs" />
+    <Compile Include="Orders\CustomReportService.cs" />
+    <Compile Include="Orders\AtolService.cs" />
+    <Compile Include="Orders\Netprint\Order1cExportService.cs" />
+    <Compile Include="Orders\Netprint\OrderNetprintFtpUploadService.cs" />
+    <Compile Include="Orders\SiteFlow\Models\SiteFlowCarrier.cs" />
+    <Compile Include="Orders\SiteFlow\Models\SiteFlowComponent.cs" />
+    <Compile Include="Orders\SiteFlow\Models\SiteFlowDestination.cs" />
+    <Compile Include="Orders\SiteFlow\Models\SiteFlowItem.cs" />
+    <Compile Include="Orders\SiteFlow\Models\SiteFlowOrder.cs" />
+    <Compile Include="Orders\SiteFlow\Models\SiteFlowOrderData.cs" />
+    <Compile Include="Orders\SiteFlow\Models\SiteFlowReturnAddress.cs" />
+    <Compile Include="Orders\SiteFlow\Models\SiteFlowShipment.cs" />
+    <Compile Include="Orders\SiteFlow\SiteFlowExportService.cs" />
+    <Compile Include="Orders\SiteFlow\SiteFlowResponse.cs" />
+    <Compile Include="Payment\BoricaNewGenerationPaymentService.cs" />
+    <Compile Include="Payment\SSLCommerzService.cs" />
+    <Compile Include="Payment\Swedbank\SwedbankXMLSerializeService.cs" />
+    <Compile Include="Payment\WayForPayService.cs" />
+    <Compile Include="Payment\StripePaymentService.cs" />
+    <Compile Include="Payment\SberbankPaymentService.cs" />
+    <Compile Include="PhoneRulesService.cs" />
+    <Compile Include="Payment\Receipt\TinkoffReceiptService.cs" />
+    <Compile Include="Payment\Receipt\PaypalReceiptService.cs" />
+    <Compile Include="Payment\TinkoffPaymentService.cs" />
+    <Compile Include="Photolab\PhotolabProvidingService.cs" />
+    <Compile Include="Poly1C\Poly1CStateService.cs" />
+    <Compile Include="Poly1C\Poly1CService.cs" />
+    <Compile Include="Preflight\Generators\PptxPreviewGenerator.cs" />
+    <Compile Include="Preflight\Generators\AiPreviewGenerator.cs" />
+    <Compile Include="Preflight\Generators\DocxPreviewGenerator.cs" />
+    <Compile Include="Preflight\Validators\PreflightValidatorAi.cs" />
+    <Compile Include="Preflight\Validators\PreflightValidatorPptx.cs" />
+    <Compile Include="PrintingModuleExportService.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Queue\Base\BaseQueuePublisher.cs" />
+    <Compile Include="Queue\Base\BaseQueueRpcClient.cs" />
+    <Compile Include="Queue\Base\BaseQueueRpcServer.cs" />
+    <Compile Include="Queue\Base\BaseQueueSubscriber.cs" />
+    <Compile Include="Queue\Publishers\Fonts\FontBackupS3FilePublisher.cs" />
+    <Compile Include="Queue\Publishers\Fonts\FontWoff2ConvertPublisher.cs" />
+    <Compile Include="Queue\Publishers\Order\OrderSplitQueuePublisher.cs" />
+    <Compile Include="Queue\Publishers\Resources\SystemResourceUsagePublisher.cs" />
+    <Compile Include="Queue\Publishers\Resources\FrontendResourceUsagePublisher.cs" />
+    <Compile Include="Queue\Publishers\Images\ImageEncoderPublisher.cs" />
+    <Compile Include="Queue\Publishers\Integrations\GoogleAnalyticsQueuePublisher.cs" />
+    <Compile Include="Queue\Publishers\Integrations\MneniyaProQueuePublisher.cs" />
+    <Compile Include="Queue\Publishers\Mail\MailSenderPublisher.cs" />
+    <Compile Include="Queue\Publishers\OrderStatistics\OrderStatisticsPublisher.cs" />
+    <Compile Include="Queue\Publishers\ShoppingCart\ShoppingCartRecalculatePublisher.cs" />
+    <Compile Include="Queue\Publishers\WebHooks\WebHooksQueuePublisher.cs" />
+    <Compile Include="Queue\Publishers\Integrations\YandexMetricsQueuePublisher.cs" />
+    <Compile Include="Queue\RPC\HtmlToPdf\HtmlToPdfRPCClient.cs" />
+    <Compile Include="Queue\RPC\HtmlToPdf\HtmlToPdfRPCServer.cs" />
+    <Compile Include="Queue\RPC\ImageFillment\ImageFillmentRPCClient.cs" />
+    <Compile Include="Queue\RPC\ImageFillment\ImageFillmentRPCServer.cs" />
+    <Compile Include="Queue\RPC\Images\ImageDecoderRPCClient.cs" />
+    <Compile Include="Queue\RPC\Images\ImageDecoderRPCServer.cs" />
+    <Compile Include="Queue\RPC\Merch\MerchRendereRPCClient.cs" />
+    <Compile Include="Queue\RPC\Merch\MerchRendererRPCServer.cs" />
+    <Compile Include="Queue\RPC\OfficeParser\OfficeParserRPCClient.cs" />
+    <Compile Include="Queue\RPC\OfficeParser\OfficeParserRPCServer.cs" />
+    <Compile Include="Queue\RPC\Test\TestRPCClient.cs" />
+    <Compile Include="Queue\RPC\Test\TestRPCServer.cs" />
+    <Compile Include="Queue\Base\QueueNamingConvention.cs" />
+    <Compile Include="Queue\Base\BaseQueue.cs" />
+    <Compile Include="Queue\RPC\VectorEditor\VectorEditorPreviewRPCClient.cs" />
+    <Compile Include="Queue\RPC\VectorEditor\VectorEditorPreviewRPCServer.cs" />
+    <Compile Include="Queue\Subsribers\Order\OrderSplitSubscruber.cs" />
+    <Compile Include="Queue\Subsribers\Resources\FrontendResourceUsageConsumer.cs" />
+    <Compile Include="Queue\Subsribers\Images\ImageEncoderSubscriber.cs" />
+    <Compile Include="Queue\Subsribers\Fonts\FontBackupS3FileConsumer.cs" />
+    <Compile Include="Queue\Subsribers\Fonts\FontWoff2ConvertConsumer.cs" />
+    <Compile Include="Queue\Subsribers\Integrations\GoogleAnalyticsSubscriber.cs" />
+    <Compile Include="Queue\Subsribers\Integrations\MneniyaProSubscriber.cs" />
+    <Compile Include="Queue\Subsribers\Integrations\YandexMetricsSubscriber.cs" />
+    <Compile Include="Queue\Subsribers\Mail\MailSenderConsumer.cs" />
+    <Compile Include="Queue\Subsribers\OrderStatistics\OrderStatisticsConsumer.cs" />
+    <Compile Include="Queue\Subsribers\Resources\SystemResourceUsageConsumer.cs" />
+    <Compile Include="Queue\Subsribers\ShoppingCart\ShoppingCartRecalculateConsumer.cs" />
+    <Compile Include="Queue\Subsribers\WebHooks\WebHooksQueueConsumer.cs" />
+    <Compile Include="Search\BaseSearchQueryService.cs" />
+    <Compile Include="Search\DomainBasedSearchQueryService.cs" />
+    <Compile Include="Search\SouvenirsSearchQueryService.cs" />
+    <Compile Include="Search\UserCompaniesSearchQueryService .cs" />
+    <Compile Include="Notifications\Mail\Sendsay\Requests\BaseRequest.cs" />
+    <Compile Include="Notifications\Mail\Sendsay\Requests\BlockListRequest.cs" />
+    <Compile Include="Notifications\Mail\Sendsay\Requests\SendsayMessage.cs" />
+    <Compile Include="Notifications\Mail\Sendsay\Requests\SendsayMessagePlain.cs" />
+    <Compile Include="Notifications\Mail\Sendsay\Requests\SendsayTrackRequest.cs" />
+    <Compile Include="Notifications\Mail\Sendsay\Requests\SendseySendMessageRequest.cs" />
+    <Compile Include="Notifications\Mail\Sendsay\Requests\SensayMessageAttachment.cs" />
+    <Compile Include="Notifications\Mail\Sendsay\Response\AsyncRequestStateResponse.cs" />
+    <Compile Include="Notifications\Mail\Sendsay\Response\BaseResponse.cs" />
+    <Compile Include="Notifications\Mail\Sendsay\SendsayService.cs" />
+    <Compile Include="ShippingProviders\Boxberry\BoxberryClient.cs" />
+    <Compile Include="ShippingProviders\CDEKv2\CDEKv2Client.cs" />
+    <Compile Include="ShippingProviders\CDEKv2\CDEKv2Service.cs" />
+    <Compile Include="ShippingProviders\Boxberry\BoxberryService.cs" />
+    <Compile Include="ShippingProviders\CDEK\CdekClient.cs" />
+    <Compile Include="ShippingProviders\USPS\UspsClient.cs" />
+    <Compile Include="ShippingProviders\USPS\UspsService.cs" />
+    <Compile Include="ShippingProviders\DDelivery\DDeliveryRepository.cs" />
+    <Compile Include="ShippingProviders\Evropochta\EvropochtaClient.cs" />
+    <Compile Include="ShippingProviders\Evropochta\EvropochtaService.cs" />
+    <Compile Include="ShippingProviders\DPD\DpdService.cs" />
+    <Compile Include="ShippingProviders\DPD\DpdClient.cs" />
+    <Compile Include="ShippingProviders\Omniva\EcontClient.cs" />
+    <Compile Include="ShippingProviders\PickpointService.cs" />
+    <Compile Include="Search\CmsSearchQueryService.cs" />
+    <Compile Include="Search\OrderSerachQueryService.cs" />
+    <Compile Include="Search\ProductSearchQueryService.cs" />
+    <Compile Include="Search\SearchQueryParserFactory.cs" />
+    <Compile Include="Search\SearchService.cs" />
+    <Compile Include="Search\UserSearchQueryService.cs" />
+    <Compile Include="Queue\Publishers\TestMessageQueuePublisher.cs" />
+    <Compile Include="Queue\Base\IQueueConsumer.cs" />
+    <Compile Include="Queue\Subsribers\TestQueueConsumer.cs" />
+    <Compile Include="ShippingProviders\Omniva\EcontService.cs" />
+    <Compile Include="ShippingProviders\Omniva\OmnivaServices.cs" />
+    <Compile Include="ShippingProviders\RussianPost\RussianPostClient.cs" />
+    <Compile Include="ShippingProviders\RussianPost\RussianPostSevice.cs" />
+    <Compile Include="ShippingProviders\YandexGo\YandexGoService.cs" />
+    <Compile Include="ShippingProviders\YandexGo\YandexGoClient.cs" />
+    <Compile Include="ShippingProviders\Yandex\YandexDeliveryClient.cs" />
+    <Compile Include="ShippingProviders\Yandex\YandexDeliveryService.cs" />
+    <Compile Include="Suppliers\FileServices\AfterGiftsFilesService.cs" />
+    <Compile Include="Suppliers\FileServices\CenterPrestigeFileService.cs" />
+    <Compile Include="Suppliers\FileServices\DirectuniverseFileService.cs" />
+    <Compile Include="SubformulaService.cs" />
+    <Compile Include="Suppliers\FileServices\Custom1CFileService.cs" />
+    <Compile Include="Suppliers\FileServices\MidOceanFileService.cs" />
+    <Compile Include="Suppliers\FileServices\OceanGiftsFileService.cs" />
+    <Compile Include="Suppliers\FileServices\VivagiftsFileService.cs" />
+    <Compile Include="Suppliers\FrontendSuppliersCategoryGroupsService.cs" />
+    <Compile Include="Suppliers\FrontendSuppliersFixedCirculationService.cs" />
+    <Compile Include="Suppliers\SuppliersCategoryGroupService.cs" />
+    <Compile Include="Suppliers\SuppliersFixedCirculationService.cs" />
+    <Compile Include="Suppliers\SuppliersPrintingService.cs" />
+    <Compile Include="Suppliers\SupplierUnloadingFileService.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\AfterGiftsParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\Custom1CParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\CenterPrestigeParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\DirectuniverseParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\MidOceanParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\OceanGiftsParser.cs" />
+    <Compile Include="Suppliers\FileServices\XindaoFileService.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\storages\CenterPrestigeStaticStorage.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\VivagiftsParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\XindaoParser.cs" />
+    <Compile Include="Merch\MerchService.cs" />
+    <Compile Include="Templates\FrontendTagService.cs" />
+    <Compile Include="Templates\FrontendTemplateSetService.cs" />
+    <Compile Include="Templates\FrontendTemplateTagService.cs" />
+    <Compile Include="Templates\TemplateFileService.cs" />
+    <Compile Include="Translate\Providers\DeepL\DeepLClient.cs" />
+    <Compile Include="Translate\Providers\DeepL\DeepLException.cs" />
+    <Compile Include="Translate\Providers\DeepL\DocumentTranslation.cs" />
+    <Compile Include="Translate\Providers\DeepL\ErrorResult.cs" />
+    <Compile Include="Translate\Providers\DeepL\Language.cs" />
+    <Compile Include="Translate\Providers\DeepL\Splitting.cs" />
+    <Compile Include="Translate\Providers\DeepL\SupportedLanguage.cs" />
+    <Compile Include="Translate\Providers\DeepL\Translation.cs" />
+    <Compile Include="Translate\Providers\DeepL\TranslationResult.cs" />
+    <Compile Include="Translate\Providers\DeepL\TranslationState.cs" />
+    <Compile Include="Translate\Providers\DeepL\TranslationStatus.cs" />
+    <Compile Include="Translate\Providers\DeepL\UsageStatistics.cs" />
+    <Compile Include="Translate\Providers\DeepL\XmlHandling.cs" />
+    <Compile Include="Translate\Providers\DeepLTranslateService.cs" />
+    <Compile Include="Translate\Providers\IProviderTranslateService.cs" />
+    <Compile Include="Translate\Providers\YandexTranslateService.cs" />
+    <Compile Include="Translate\Providers\Yandex\YandexIamTokenRequest.cs" />
+    <Compile Include="Translate\Providers\Yandex\YandexIamTokenResponse.cs" />
+    <Compile Include="Translate\Providers\Yandex\YandexTranslateRequest.cs" />
+    <Compile Include="Translate\Providers\Yandex\YandexTranslateResponse.cs" />
+    <Compile Include="Translate\Providers\Yandex\YandexTranslationItem.cs" />
+    <Compile Include="Translate\TranslateService.cs" />
+    <Compile Include="Merch\MerchCategoriesService.cs" />
+    <Compile Include="UserAuthService.cs" />
+    <Compile Include="Notifications\NotificationTemplateService.cs" />
+    <Compile Include="Orders\Contractors\OrderContractorPaymentService.cs" />
+    <Compile Include="Orders\FrontendOrderService.cs" />
+    <Compile Include="Orders\FrontendProposalService.cs" />
+    <Compile Include="Orders\InvoiceWorkflowService.cs" />
+    <Compile Include="Orders\OrderCachingTags.cs" />
+    <Compile Include="Orders\Contractors\OrderContractorService.cs" />
+    <Compile Include="Orders\OrderExportTemplateFileService.cs" />
+    <Compile Include="Orders\OrderFilesService.cs" />
+    <Compile Include="Orders\OrderPaymentService.cs" />
+    <Compile Include="Orders\OrderRelationService.cs" />
+    <Compile Include="Orders\OrderSearchService.cs" />
+    <Compile Include="Orders\OrderManipulationService.cs" />
+    <Compile Include="Orders\OrderTextService.cs" />
+    <Compile Include="Orders\OrderTitleService.cs" />
+    <Compile Include="Orders\OrderWorkflowService.cs" />
+    <Compile Include="Orders\Netprint\NetprintPrepareFileService.cs" />
+    <Compile Include="Orders\ProposalService.cs" />
+    <Compile Include="Notifications\NotificationRenderService.cs" />
+    <Compile Include="Payment\Class1.cs" />
+    <Compile Include="Payment\IyzicoPaymentService.cs" />
+    <Compile Include="Payment\PayPalPaymentService.cs" />
+    <Compile Include="Payment\Receipt\AssistReceiptService.cs" />
+    <Compile Include="Payment\Receipt\BaseReceiptService.cs" />
+    <Compile Include="Payment\Receipt\PaykeeperReceiptService.cs" />
+    <Compile Include="Payment\Receipt\RobokassaReceiptService.cs" />
+    <Compile Include="Payment\Receipt\YandexApiReceiptService.cs" />
+    <Compile Include="Payment\Receipt\YandexReceiptService.cs" />
+    <Compile Include="Payment\Swedbank\SwedbankPaymentService.cs" />
+    <Compile Include="Payment\VictoriabankPaymentService.cs" />
+    <Compile Include="Payment\PaypalRestPaymentService.cs" />
+    <Compile Include="Payment\PayseraPaymentService.cs" />
+    <Compile Include="Payment\AssistPaymentService.cs" />
+    <Compile Include="Payment\EPayKKBPaymentService.cs" />
+    <Compile Include="Payment\BasePaymentService.cs" />
+    <Compile Include="Payment\PayUPaymentService.cs" />
+    <Compile Include="Payment\QiwiRestPaymentService.cs" />
+    <Compile Include="Payment\RobokassaPaymentService.cs" />
+    <Compile Include="Payment\WebpayPaymentService.cs" />
+    <Compile Include="Payment\YandexApiPaymentService.cs" />
+    <Compile Include="CompanyAccountMigrationService.cs" />
+    <Compile Include="Preflight\Generators\EpsPreviewGenerator.cs" />
+    <Compile Include="Preflight\Rules\Base\DemensionsValidationRule.cs" />
+    <Compile Include="Preflight\Rules\PDF\PdfFontsValidationRule.cs" />
+    <Compile Include="Preflight\Rules\PDF\PdfPagesSameSizesRule.cs" />
+    <Compile Include="Preflight\Validators\PreflightValidatorCommon.cs" />
+    <Compile Include="Preflight\Validators\PreflightValidatorDocx.cs" />
+    <Compile Include="ScribanService.cs" />
+    <Compile Include="SharedAlbums\SharedAlbumEntryService.cs" />
+    <Compile Include="SharedAlbums\SharedAlbumService.cs" />
+    <Compile Include="ShippingProviders\Postnl\PostnlRequests.cs" />
+    <Compile Include="ShippingProviders\Postnl\PostnlServices.cs" />
+    <Compile Include="ShippingProviders\AddressResolver.cs" />
+    <Compile Include="ShippingProviders\Justin\JustinServices.cs" />
+    <Compile Include="Shop\FrontendProductCategoryService.cs" />
+    <Compile Include="Shop\FrontendProductPropertyService.cs" />
+    <Compile Include="Shop\FrontendProductService.cs" />
+    <Compile Include="Shop\FrontendProductSpecifiedParameterService.cs" />
+    <Compile Include="ShippingProviders\Ukrposhta\UkrposhtaAddress.cs" />
+    <Compile Include="ShippingProviders\Ukrposhta\UkrposhtaDeliveryPrice.cs" />
+    <Compile Include="ShippingProviders\Ukrposhta\UkrposhtaInfo.cs" />
+    <Compile Include="ShippingProviders\Ukrposhta\UkrposhtaRequests.cs" />
+    <Compile Include="ShippingProviders\Ukrposhta\UkrposhtaOrder.cs" />
+    <Compile Include="ShippingProviders\Ukrposhta\UkrposhtaServices.cs" />
+    <Compile Include="ShippingProviders\Ukrposhta\UkrposhtaUser.cs" />
+    <Compile Include="Suppliers\FileServices\ArtbottleFileService.cs" />
+    <Compile Include="Suppliers\FileServices\EbazaarFileService.cs" />
+    <Compile Include="Suppliers\FileServices\HappyGiftsFileService.cs" />
+    <Compile Include="Suppliers\FileServices\OasisFileService.cs" />
+    <Compile Include="Suppliers\FileServices\Project111FileService.cs" />
+    <Compile Include="Suppliers\FileServices\StanFileService.cs" />
+    <Compile Include="Suppliers\FileServices\TopcatalogFileService.cs" />
+    <Compile Include="Suppliers\FrontendSuppliersCategoryService.cs" />
+    <Compile Include="Suppliers\FrontendSuppliersCirculationService.cs" />
+    <Compile Include="Suppliers\FrontendSuppliersService.cs" />
+    <Compile Include="Suppliers\FrontendSuppliersSettingsService.cs" />
+    <Compile Include="Suppliers\SuppliersSettingsService.cs" />
+    <Compile Include="Suppliers\SuppliersFileService.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\BaseSyncTaskService.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\FileSupplementSyncService.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\FileMainSyncService.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\FullSyncService.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\InitSyncService.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\ArtbottleParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\EbazaarParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\HappyGiftsParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\OasisParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\Project111Parser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\StanParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\SuppliersParserBase.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\Parsers\TopcatalogParser.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\StockSyncService.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\SuppliersMappingData.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\ParsedData.cs" />
+    <Compile Include="ShippingProviders\DDeliveryV2\DDeliveryV2Service.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\Models\Area.cs" />
+    <Compile Include="Suppliers\SuppliersCategoryService.cs" />
+    <Compile Include="Suppliers\SuppliersCirculationService.cs" />
+    <Compile Include="Suppliers\SuppliersFileServiceBase.cs" />
+    <Compile Include="Suppliers\SuppliersService.cs" />
+    <Compile Include="Suppliers\SuppliersSyncService.cs" />
+    <Compile Include="Preflight\Generators\PdfPreviewGenerator.cs" />
+    <Compile Include="Preflight\Generators\PreflightPreviewGeneratorBase.cs" />
+    <Compile Include="Preflight\Rules\PDF\PdfMergedValidationRule.cs" />
+    <Compile Include="Preflight\Rules\PDF\PdfNonEmptyValidationRule.cs" />
+    <Compile Include="Preflight\Rules\Base\FileFormatValidationRule.cs" />
+    <Compile Include="Preflight\Rules\Base\FileSizeValidationRule.cs" />
+    <Compile Include="Preflight\Rules\Image\ImageColorProfileValidationRule.cs" />
+    <Compile Include="Preflight\Rules\Image\ImageColorSpaceValidationRule.cs" />
+    <Compile Include="Preflight\Rules\Base\ImageResolutionValidationRule.cs" />
+    <Compile Include="Preflight\Rules\PDF\PdfColorSpaceValidationRule.cs" />
+    <Compile Include="Preflight\Rules\PDF\PdfVersionValidationRule.cs" />
+    <Compile Include="Preflight\Generators\ImagePreviewGenerator.cs" />
+    <Compile Include="Preflight\Generators\IPreflightPreviewGenerator.cs" />
+    <Compile Include="Preflight\Validators\PreflightValidatorBase.cs" />
+    <Compile Include="Preflight\PreflightFactory.cs" />
+    <Compile Include="Preflight\Validators\PreflightValidatorImage.cs" />
+    <Compile Include="Preflight\Validators\PreflightValidatorPdf.cs" />
+    <Compile Include="ShippingProviders\BaseShippingServices.cs" />
+    <Compile Include="ShippingProviders\CDEK\CdekErrorType.cs" />
+    <Compile Include="ShippingProviders\CDEK\CdekException.cs" />
+    <Compile Include="ShippingProviders\CDEK\CdekServices.cs" />
+    <Compile Include="ShippingProviders\DDelivery\DDeliveryOrderStatusResponse.cs" />
+    <Compile Include="ShippingProviders\DDelivery\DDeliveryServices.cs" />
+    <Compile Include="ShippingProviders\DDelivery\DdeliveryStatus.cs" />
+    <Compile Include="ShippingProviders\Exgarant\ExgarantGetOrderInput.cs" />
+    <Compile Include="ShippingProviders\Exgarant\ExgarantOrderCreationResponse.cs" />
+    <Compile Include="ShippingProviders\Exgarant\ExgarantOrderStatusResponse.cs" />
+    <Compile Include="ShippingProviders\Exgarant\ExgarantPoint.cs" />
+    <Compile Include="ShippingProviders\Exgarant\ExgarantPoints.cs" />
+    <Compile Include="ShippingProviders\Exgarant\ExgarantResponse.cs" />
+    <Compile Include="ShippingProviders\Exgarant\ExgarantStatus.cs" />
+    <Compile Include="ShippingProviders\ImLogisticsServices.cs" />
+    <Compile Include="ShippingProviders\Exgarant\ExgarantServices.cs" />
+    <Compile Include="ShippingProviders\ImlV2\ImlV2ErrorModel.cs" />
+    <Compile Include="ShippingProviders\ImlV2\ImlV2OrderCreationResponse.cs" />
+    <Compile Include="ShippingProviders\ImlV2\ImlV2OrderModel.cs" />
+    <Compile Include="ShippingProviders\ImlV2\ImlV2Point.cs" />
+    <Compile Include="ShippingProviders\ImlV2\ImlV2PriceCalculationResponse.cs" />
+    <Compile Include="ShippingProviders\ImlV2\ImlV2Request.cs" />
+    <Compile Include="ShippingProviders\ImlV2\ImlV2Requests.cs" />
+    <Compile Include="ShippingProviders\ImlV2\ImlV2Response.cs" />
+    <Compile Include="ShippingProviders\ImlV2\ImlV2Services.cs" />
+    <Compile Include="ShippingProviders\Photomax\PhotomaxCity.cs" />
+    <Compile Include="ShippingProviders\Photomax\PhotomaxDeliveryExtended.cs" />
+    <Compile Include="ShippingProviders\Photomax\PhotomaxDeliveryVariant.cs" />
+    <Compile Include="ShippingProviders\Photomax\PhotomaxOrderCreation.cs" />
+    <Compile Include="ShippingProviders\Photomax\PhotomaxResponse.cs" />
+    <Compile Include="ShippingProviders\Photomax\PhotomaxShippingService.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\Models\CostModel.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\NovaposhtaErrorsJsonConverter.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\Models\City.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\Models\Contact.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\Models\Person.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\Models\Document.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\Models\DocumentCreation.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\NovaposhtaException.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\Models\RefModel.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\Models\Street.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\NovaposhtaRequests.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\Models\Address.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\Models\Reception.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\NovaposhtaRequest.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\NovaposhtaResponse.cs" />
+    <Compile Include="ShippingProviders\Novaposhta\NovaposhtaV2Services.cs" />
+    <Compile Include="ShippingProviders\Photomax\PhotomaxStatus.cs" />
+    <Compile Include="ShippingProviders\ShippingProviderResolverService.cs" />
+    <Compile Include="Shop\ProductImportService.cs" />
+    <Compile Include="ExternalServices\SocialClientsFactory.cs" />
+    <Compile Include="SubscriptionService.cs" />
+    <Compile Include="Suppliers\SyncInfrastructure\SyncTaskResult.cs" />
+    <Compile Include="TaxService.cs" />
+    <Compile Include="Imaging\QrCodeGeneratorService.cs" />
+    <Compile Include="Materials\Converters\IMaterialConverterBase.cs" />
+    <Compile Include="Materials\Converters\MaterialConvertorFactory.cs" />
+    <Compile Include="Templates\FrontendTemplateService.cs" />
+    <Compile Include="Templates\TemplateCalendarService.cs" />
+    <Compile Include="Users\AffiliateUserService.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Preflight\PreflightService.cs" />
+    <Compile Include="GeoIP\GeoIPService.cs" />
+    <Compile Include="CustomWork\CustomWorkService.cs" />
+    <Compile Include="Shop\ProductSpecifiedParameterService.cs" />
+    <Compile Include="FaqService.cs" />
+    <Compile Include="Orders\OrderHistoryService.cs" />
+    <Compile Include="Orders\Statistics\OrderStatisticsService.cs" />
+    <Compile Include="Notifications\NotificationService.cs" />
+    <Compile Include="Notifications\Sms\SmsService.cs" />
+    <Compile Include="Orders\OrderExportService.cs" />
+    <Compile Include="Checkout\DiscountService.cs" />
+    <Compile Include="Feedbacks\FeedbackService.cs" />
+    <Compile Include="Files\FileService.cs" />
+    <Compile Include="Imaging\ImageService.cs" />
+    <Compile Include="Notifications\Mail\MailService.cs" />
+    <Compile Include="Materials\MaterialService.cs" />
+    <Compile Include="Materials\MaterialTypeService.cs" />
+    <Compile Include="NewsService.cs" />
+    <Compile Include="Orders\OrderCommentService.cs" />
+    <Compile Include="Orders\OrderService.cs" />
+    <Compile Include="Shop\ProductCategoryService.cs" />
+    <Compile Include="Shop\ProductManufactoryService.cs" />
+    <Compile Include="Shop\ProductPropertyService.cs" />
+    <Compile Include="Shop\ProductService.cs" />
+    <Compile Include="ServiceBase.cs" />
+    <Compile Include="ServiceHelper.cs" />
+    <Compile Include="Checkout\ShoppingCartService.cs" />
+    <Compile Include="Orders\OrderInvoiceService.cs" />
+    <Compile Include="Checkout\PaymentService.cs" />
+    <Compile Include="Checkout\PaymentSystemService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextService.cs" />
+    <Compile Include="Users\FrontendUserCompanyPayerService.cs" />
+    <Compile Include="Users\FrontendUserCompanyManipulationService.cs" />
+    <Compile Include="Users\FrontendUserCompanyService.cs" />
+    <Compile Include="Users\Netprint\NetprintResponse.cs" />
+    <Compile Include="Users\Netprint\NetprintResponseCode.cs" />
+    <Compile Include="Users\Netprint\NetprintUserResponseData.cs" />
+    <Compile Include="Users\UserCompanyAccountService.cs" />
+    <Compile Include="Users\UserCompanyNotificationService.cs" />
+    <Compile Include="Users\UserCompanyPayerService.cs" />
+    <Compile Include="Users\UserCompanyManipulationService.cs" />
+    <Compile Include="Users\SouvenirsSearchService.cs" />
+    <Compile Include="Users\UserCompanyExportService.cs" />
+    <Compile Include="Users\UserExportService.cs" />
+    <Compile Include="Users\UserImportService.cs" />
+    <Compile Include="Users\UserAccountService.cs" />
+    <Compile Include="Users\UserMergeService.cs" />
+    <Compile Include="Users\UserProviderMobileService.cs" />
+    <Compile Include="Users\UserNetprintService.cs" />
+    <Compile Include="Users\UserCompanySearchService.cs" />
+    <Compile Include="Users\UserSearchService.cs" />
+    <Compile Include="Users\UserService.cs" />
+    <Compile Include="VariableService.cs" />
+    <Compile Include="VerySpecialService.cs" />
+    <Compile Include="WebHooks\DTO\CommentMessageDTO.cs" />
+    <Compile Include="WebHooks\DTO\CompanyRegisterMessageDTO.cs" />
+    <Compile Include="WebHooks\DTO\CompanyRequisitesDTO.cs" />
+    <Compile Include="WebHooks\DTO\UserRegisterMessageDTO.cs" />
+    <Compile Include="WebHooks\DTO\ShippingDTO.cs" />
+    <Compile Include="WebHooks\DTO\ContractorOrderDTO.cs" />
+    <Compile Include="WebHooks\DTO\AddressDTO.cs" />
+    <Compile Include="WebHooks\DTO\OrderMessageDTO.cs" />
+    <Compile Include="WebHooks\WebHooksService.cs" />
+    <Compile Include="YmlExportService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <EmbeddedResource Include="Imaging\ICC\CoatedFOGRA39.icc" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\CoatedFOGRA39.icc" />
+    <None Include="Resources\JapanWebCoated.icc" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ShippingProviders\example\imlogistics-response-example.xml" />
+    <Content Include="ShippingProviders\example\imlogistics-query-example.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Orders\Netprint\Backoffice\OrderXml\Files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Photoprint.Core\Photoprint.Core.csproj">
+      <Project>{598d0689-8128-467f-9de7-725992bab221}</Project>
+      <Name>Photoprint.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\PdfiumViewer.Native.x86_64.v8-xfa.2017.12.4.236\build\PdfiumViewer.Native.x86_64.v8-xfa.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\PdfiumViewer.Native.x86_64.v8-xfa.2017.12.4.236\build\PdfiumViewer.Native.x86_64.v8-xfa.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.ML.OnnxRuntime.Managed.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.Managed.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.ML.OnnxRuntime.Managed.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.Managed.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.ML.OnnxRuntime.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.ML.OnnxRuntime.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.ML.OnnxRuntime.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.ML.OnnxRuntime.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Scriban.5.4.4\build\Scriban.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Scriban.5.4.4\build\Scriban.props'))" />
+    <Error Condition="!Exists('..\..\packages\Scriban.5.4.4\build\Scriban.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Scriban.5.4.4\build\Scriban.targets'))" />
+    <Error Condition="!Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
+    <Error Condition="!Exists('..\..\packages\System.Text.Json.6.0.6\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\System.Text.Json.6.0.6\build\System.Text.Json.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Microsoft.ML.OnnxRuntime.Managed.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.Managed.targets" Condition="Exists('..\..\packages\Microsoft.ML.OnnxRuntime.Managed.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.Managed.targets')" />
+  <Import Project="..\..\packages\Microsoft.ML.OnnxRuntime.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets" Condition="Exists('..\..\packages\Microsoft.ML.OnnxRuntime.1.7.0\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets')" />
+  <Import Project="..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
+  <Import Project="..\..\packages\Scriban.5.4.4\build\Scriban.targets" Condition="Exists('..\..\packages\Scriban.5.4.4\build\Scriban.targets')" />
+  <Import Project="..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
+  <Import Project="..\..\packages\System.Text.Json.6.0.6\build\System.Text.Json.targets" Condition="Exists('..\..\packages\System.Text.Json.6.0.6\build\System.Text.Json.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,71 @@
+<!-- ko ifnot: isHideMode -->
+<h3 data-bind="html: loc_selectorTitle"></h3>
+<div class="delivery_location_selector">
+    <div class="delivery_location_selector__input_wrapper">
+        <div class="delivery_location_selector__inputwrapper delivery_location_selector__input_wrapper__item" data-bind="visible: isEditMode">
+            <input class="delivery_location_selector__input" type="text" maxlength="50" autocomplete="nope" autocorrect="off"
+                   autocapitalize="none" spellcheck="false"
+                   id="deliveryCitySelector"
+                   data-bind="textInput: searchQuery, hasFocus: focusSearchQuery, css:{'delivery_location_selector__input_invalid': isReverseSearchError}" />
+
+            <div class="delivery_location_selector__geolocation" data-bind="visible: isReverseSearchAvailable">
+                <div class="delivery_location_selector__geolocation_icon" title="Определить мое местоположение"
+                     data-bind="click: findUserGeoLocation, css:{'animate-spin': isReverseSearchLoading}"></div>
+            </div>
+
+            <div data-bind="visible: isReverseSearchError, html: loc_errorAutoGeoposAlert" class="delivery_location_selector__geolocation_error"></div>
+
+            <!-- ko with: cityDropdown -->
+            <!-- ko if: isVisible -->
+            <div class="delivery_location_selector__citysuggest" data-bind="css:{'delivery_location_selector__citysuggest_busy': itemList() != null && $parent.isSearching()}">
+                <!-- ko foreach: itemList -->
+                <div class="delivery_location_selector__citysuggest_city"
+                     data-bind="click: $parent.selectItem,
+                                event: { mouseover: $parent.onItemHover },
+                                css: { 'delivery_location_selector__citysuggest_city_highlight': $data === $parent.selectedItem() }
+                    ">
+                    <div class="delivery_location_selector__citysuggest_city_title" data-bind="text: title"></div>
+                    <div class="delivery_location_selector__citysuggest_city_info" data-bind="text: description"></div>
+                </div>
+                <!-- /ko -->
+                <div data-bind="visible: itemList() == null" class="delivery_location_selector__citysuggest_loading loading-wheel"></div>
+                <div data-bind="visible: (itemList() !== null && itemList().length == 0), html: $parent.loc_noCityResults" class="delivery_location_selector__citysuggest_notfound"></div>
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+        <div class="delivery_location_selector__city delivery_location_selector__input_wrapper__item" data-bind="visible: isViewMode, with: selectedCity">
+            <div class="delivery_location_selector__city_title" data-bind="text: $data != null ? $data.title : ''"></div>
+            <a class="delivery_location_selector__city_change semilink" href="#" data-bind="html: $parent.loc_change, click: $parent.changeCity, visible: !$parent.typeSelectorIsLoading()"></a>
+            <div class="delivery_location_selector__city_info" data-bind="text: $data != null ? $data.description : ''"></div>
+        </div>
+        <!-- ko with: countrySelector-->
+        <!-- ko if: isVisible -->
+        <div class="delivery_location_selector__inputwrapper delivery_location_selector__input_wrapper__item" data-bind="visible: isEditMode">
+            <!-- ko if: countryDropdown.isVisible -->
+            <div class="delivery_location_selector__citysuggest" data-bind="with: countryDropdown">
+                <!-- ko foreach: itemList -->
+                <div class="delivery_location_selector__citysuggest_city"
+                     data-bind="click: $parent.selectItem,
+                                event: { mouseover: $parent.onItemHover },
+                                css: { 'delivery_location_selector__citysuggest_city_highlight': $data === $parent.selectedItem() }
+                    ">
+                    <div class="delivery_location_selector__citysuggest_city_title" data-bind="text: title"></div>
+                </div>
+                <!-- /ko -->
+            </div>
+            <!-- /ko -->
+        </div>
+        <div class="delivery_location_selector__city delivery_location_selector__input_wrapper__item" data-bind="visible: isViewMode">
+            <div class="delivery_location_selector__country_title" data-bind="html: loc_countryFilter"></div>
+            <div class="delivery_location_selector__country_info" data-bind="text: selectedCountry().title"></div>
+            <a class="delivery_location_selector__city_change semilink" href="#" data-bind="html: $parent.loc_change, click: changeCountry, visible: !$parent.typeSelectorIsLoading()"></a>
+            <!--<select class="delivery_location_selector__countryselector__selector" data-bind="options: countries, value: selectedCountry, optionsText: 'title',"></select>-->
+        </div>
+        <!-- /ko -->
+        <!-- /ko -->
+    </div>
+    <div class="delivery_validation_error" data-bind="visible: false, html: loc_deliveryValidationErrorAlert"></div>
+</div>
+<div class="delivery_messages" data-bind="template: {name: 'pxp__deliveryManager__messages', data: messagesManager }"></div>
+<!-- /ko -->

@@ -1,0 +1,85 @@
+@using RazorEngine
+@inherits RazorEngine.Templating.TemplateBase<Photoprint.WebSite.API.Controllers.DDeliveryTypeFormModel>
+
+<div class="map-popup">
+    <div class="map-popup__head">
+        <p>Способы доставки в</p>
+        <div class="delivery-place" style="width:280px;">
+            <input type="hidden" name="ddelivery_city" value="@Model.CityInfo.SelectedCity.Id"/>
+            <div class="delivery-place__title">
+				<input type="text" title="@Model.CityInfo.SelectedCity.Name" />
+                <span><i>&nbsp;</i></span>
+            </div>
+            <div class="delivery-place__drop">
+                <div class="delivery-place__drop_i">
+                    <h2 class="search">Поиск города:</h2>
+                    <ul class="search"></ul>
+                    <h2 class="pop">Популярные города:</h2>
+                    <ul class="pop">
+						@Include("cityHelper", Model.CityInfo)
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="map-popup__head__close">&nbsp;</div>
+    </div>
+    <div class="map-popup__main">
+        <div class="map-popup__main__overlay">&nbsp;</div>
+        <div class="map-popup__main__delivery">
+            <table>
+                @{ var courier = Model.ShippingInfo.Courier; }
+                <tr class="courier @(courier.IsDisabled ? "disabled" : string.Empty)">
+                    <td class="col1">
+						<input type="radio" @(courier.IsDisabled ? "disabled" : string.Empty) name="ddeliveryType" checked value="@((int)courier.Type)" />
+                    </td>
+                    <td class="col2"><i class="icon-car">&nbsp;</i></td>
+                    <td class="col3">
+                        <p>
+                            <strong>Доставка курьером</strong>
+                            <span class="not_support">Данный способ доставки недоступен для выбранного вами населенного пункта.<br></span>
+                            Доставка заказа по указанному вами адресу
+                        </p>
+                    </td>
+                    <td class="col4" style="position: relative">
+                        <span>от <strong><span class="min_price">@courier.MinPrice</span> <i class="icon-rub">&nbsp;</i></strong></span>
+						<img src="/Views/Checkout/Controls/Shipping/PixlparkShippings/DDelivery/tems/default/img/ajax_loader_min.gif" style="position: absolute; left:10px" class="h">
+                    </td>
+                    <td class="col5">
+	                    <span>от <strong><span class="min_time">@courier.MinTime</span></strong> 
+							<span class="time_str">дн.</span>
+						</span>
+                    </td>
+                </tr>
+                @{ var point = Model.ShippingInfo.Point; }
+				<tr class="self @(point.IsDisabled ? "disabled" : string.Empty)">
+					<td class="col1">
+						<input type="radio" @(point.IsDisabled ? "disabled" : string.Empty) name="ddeliveryType" value="@((int)point.Type)" />
+					</td>
+					<td class="col2">
+						<i class="icon-pack">&nbsp;</i>
+					</td>
+					<td class="col3">
+						<p>
+							<strong>Пункт выдачи или ячейка </strong>
+							<span class="not_support">Данный способ доставки недоступен для выбранного вами населенного пункта.<br></span>
+							Доставка заказа до выбранного вами пункта выдачи заказов.
+						</p>
+					</td>
+					<td class="col4" style="position: relative">
+						<span>от <strong><span class="min_price">@point.MinPrice</span> <i class="icon-rub">&nbsp;</i></strong></span>
+						<img src="/Views/Checkout/Controls/Shipping/PixlparkShippings/DDelivery/tems/default/img/ajax_loader_min.gif" style="position: absolute; left:10px" class="h">
+					</td>
+					<td class="col5">
+						<span>от <strong><span class="min_time">@point.MinTime</span></strong> <span class="time_str">дн.</span></span>
+					</td>
+				</tr>
+            </table>
+        </div>
+        <div class="map-popup__main__delivery__next">
+            <a href="javascript:void(0)">Далее<i>&nbsp;</i></a>
+        </div>
+    </div>
+    <div class="map-popup__bott">
+        <a href="http://ddelivery.ru/" target="blank">Сервис доставки DDelivery.ru</a>
+    </div>
+</div>

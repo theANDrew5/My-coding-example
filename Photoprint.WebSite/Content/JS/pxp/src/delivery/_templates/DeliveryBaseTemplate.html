@@ -1,0 +1,24 @@
+﻿<h1 data-bind="html: loc_pageTitle"></h1>
+<div class="delivery_manager">
+    <div class="delivery_block" data-bind="css: { 'loading-wheel': isLoading }">
+        <div data-bind="template: {name: 'pxp__deliveryManager__messages', data: messageManager}"></div>
+        <div class="delivery__city-selector" data-bind="template: {name: 'pxp__deliveryManager__citySelector', data: citySelector }"></div>
+        <div class="delivery__delivery-type-selector" data-bind="with: deliveryTypesSelector">
+            <h3 data-bind="html: loc_deliveryTitle"></h3>
+            <div class="delivery-types-container" data-bind="css: { 'loading-wheel': isLoading }">
+                <div data-bind="template: { name: 'pxp__deliveryManager__deliveryTypesListTemplate' }"></div>
+                <!-- ko if: selectedDeliveryType -->
+                <div class="delivery-type-wrapper" data-bind="with: selectedDeliveryType">
+                    <div data-bind="template: { name: template, afterRender: afterRender }, css: { 'loading-wheel': isLoading }"></div>
+                </div>
+                <!-- /ko -->
+            </div>
+            <div class="delivery_messages" data-bind="template: {name: 'pxp__deliveryManager__messages', data: messagesManager }"></div>
+        </div>
+        <div class="delivery__final-block">
+            <div class="delivery__recipient-selector" data-bind="template: {name: 'pxp__deliveryManager__recipient', data: recipent}"></div>
+            <div class="delivery__total-price-block" data-bind="template: {name: 'pxp__deliveryManager__totalPriceBlock', data: totalPriceController }"></div>
+        </div>
+    </div>
+</div>
+

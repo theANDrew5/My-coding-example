@@ -1,0 +1,62 @@
+﻿<div class="delivery_messages" data-bind="template: {name: 'pxp__deliveryManager__messages', data: messagesManager }"></div>
+<div class="delivery-address-form">
+    <!-- ko ifnot: isAddressLinesView -->
+    <div class="delivery-address-form__address-input adr_street">
+        <label for="deliveryAddressStreet" data-bind="html: loc_addressStreetLabel"></label>
+        <input data-bind="value:street, valueUpdate: 'afterkeyup', hasFocus: true" id="deliveryAddressStreet" class="delivery-form-input" type="text" name="street" autocomplete="nope" />
+        <!-- ko if: isStreetDropdownVisible -->
+        <div class="delivery_dropdown_suggest" data-bind="with: streetDropdown">
+            <!-- ko foreach: list -->
+            <div class="delivery_dropdown_suggest__item" data-bind="click: $parent.selectItem">
+                <div class="delivery_dropdown_suggest__item__title" data-bind="html: street"></div>
+                <div class="delivery_dropdown_suggest__item__info" data-bind="html: description"></div>
+            </div>
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+    </div>
+    <div class="delivery-address-form__address-input adr_house">
+        <label for="deliveryAddressHouse" data-bind="html: loc_addressHouseLabel"></label>
+        <input data-bind="textInput:house, hasFocus: houseFocus" id="deliveryAddressHouse" class="delivery-form-input" type="text" name="house" autocomplete="nope" />
+        <!-- ko if: isHouseDropdownVisible -->
+        <div class="delivery_dropdown_suggest" style="width: 150px;" data-bind="with: houseDropdown">
+            <!-- ko foreach: list -->
+            <div class="delivery_dropdown_suggest__item" data-bind="click: $parent.selectItem">
+                <div class="delivery_dropdown_suggest__item__title" data-bind="html: house"></div>
+            </div>
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+    </div>
+    <div class="delivery-address-form__address-input adr_flat">
+        <label for="deliveryAddressFlat" data-bind="html: loc_addressFlatLabel"></label>
+        <input data-bind="textInput: flat, hasFocus: flatFocus" id="deliveryAddressFlat" class="delivery-form-input" type="text" name="flat" autocomplete="nope" />
+    </div>
+    <!-- /ko -->
+    <!-- ko if: isAddressLinesView -->
+    <div class="delivery-address-form__address-input adr_addressLine1">
+        <label for="deliveryAddressAddressLine1" data-bind="html: loc_addressAddressLine1Label"></label>
+        <input data-bind="value: addressLine1, valueUpdate: 'afterkeyup', hasFocus: addressLine1Focus" id="deliveryAddressAddressLine1" class="delivery-form-input" type="text" name="addressLine1" autocomplete="nope" />
+        <!-- ko if: isFullDropdownVisible -->
+        <div class="delivery_dropdown_suggest" data-bind="with: fullAddressDropdown">
+            <!-- ko foreach: list -->
+            <div class="delivery_dropdown_suggest__item" data-bind="click: $parent.selectItem">
+                <div class="delivery_dropdown_suggest__item__title" data-bind="html: addressForDropdown"></div>
+                <div class="delivery_dropdown_suggest__item__info" data-bind="html: description"></div>
+            </div>
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+    </div>
+    <div class="delivery-address-form__address-input adr_addressLine2">
+        <label for="deliveryAddressAddressLine2" data-bind="html: loc_addressAddressLine2Label"></label>
+        <input data-bind="textInput: addressLine2" id="deliveryAddressAddressLine2" class="delivery-form-input" type="text" name="addressLine2" autocomplete="nope" />
+    </div>
+    <!-- /ko -->
+    <!-- ko if: isPostcodeVisible -->
+    <div class="delivery-address-form__address-input adr_postcode">
+        <label for="deliveryAddressPostalCode" data-bind="html: loc_addressPostalCodeLabel"></label>
+        <input data-bind="textInput: postalCode" id="deliveryAddressPostalCode" class="delivery-form-input" type="text" name="postalCode" autocomplete="nope" />
+    </div>
+    <!-- /ko -->
+</div>

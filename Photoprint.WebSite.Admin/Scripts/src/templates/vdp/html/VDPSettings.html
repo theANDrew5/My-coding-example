@@ -1,0 +1,59 @@
+﻿<li class="checkbox" style="margin-left: 0;">
+	<label class="el-switch el-switch-green" >
+		<input type="checkbox" data-bind="checked: enabled">
+		<span class="el-switch-style"></span>
+		<span data-bind="text: $root.localization.VDPTitleText"></span>
+	</label>
+</li>
+<fieldset data-bind="visible: enabled">
+	<ol>
+		<li>
+			<pxp-localizable params="localizable: groupTitleTextBox" style=" width: 48%; display: inline-block;"></pxp-localizable>
+		</li>
+		<li style="margin-top: 20px;">
+			<label>
+			<span data-bind="text: $root.localization.VDPFieldsLabel"></span>
+			<span class="note">
+				(<a class="semilink" href="#" data-bind="click: addField"><span data-bind="text: $root.localization.VDPAddButtonText"></span></a>)</span></label>
+		</li>
+	</ol>
+	<table style="border-spacing: 0 5px;" data-bind="visible:fields().length > 0 " >
+		<thead>
+			<tr>
+				<th style="width:50%;" data-bind="text: $root.localization.VDPTemplateLayerLabel"></th>
+				<th style="width:50%;" data-bind="text: $root.localization.VDPTemplateTitleLabel"></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: fields">
+			<tr>
+				<td>
+					<pxp-textbox params="textbox: templateNameTextBox"></pxp-textbox>
+				</td>
+				<td>
+					<pxp-localizable params="localizable: titleTextBox"></pxp-localizable>
+				</td>
+				<td style="vertical-align:middle;">
+					<div style="height:100%;">
+						<i style="cursor:pointer;" data-bind="click: $root.removeField" class="far fa-trash-alt"></i>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</fieldset>
+<input type="hidden" name="vdpSettings" data-bind="value: ko.toJSON($data)" />
+<style>
+    ::marker {
+        content: none;
+    }
+    .deleteButton {
+        background: #ffcdcd;
+        border: solid 1px #b56c6c;
+        border-top: solid 1px #db7f7f;
+        border-left: solid 1px #db7f7f;
+    }
+	table input{
+		text-align:left;
+	}
+</style>

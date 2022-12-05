@@ -1,0 +1,43 @@
+<h3>
+    <!-- ko text: loc_pointsTitle --><!-- /ko -->
+    <span data-bind="visible: availablePointsCount() > 0">
+        &#40;<span data-bind="html: pointsCount"></span>&#41;
+    </span>
+</h3>
+<div class="delivery-view-container_pickpoint">
+    <!-- ko template: { name: "pxp__deliveryManager__pointsList", data: list}--><!-- /ko-->
+    <div class="delivery-view-map-container pickpoint">
+        <!-- ko with: list-->
+        <!-- ko if: isSearchFilterEnabled -->
+        <div class="delivery-search-control">
+            <input type="text" class="text delivery-form-input" data-bind="hasFocus: searchStringFocus, textInput: searchString, attr: { 'placeholder': loc_placeholderText }" />
+            <!--ko with: placeSearch-->
+            <!-- ko if: isSearchDropdownVisible -->
+            <div class="delivery_dropdown_suggest" data-bind="with: searchDropdown">
+                <!-- ko foreach: list -->
+                <div class="delivery_dropdown_suggest__item" data-bind="click: $parent.selectItem">
+                    <div data-bind="html: addressForDropdown"></div>
+                </div>
+                <!-- /ko -->
+            </div>
+            <!-- /ko-->
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+        <!-- /ko-->
+        <!-- ko with: map -->
+        <!-- ko if: isAvailablePointsExist -->
+        <!-- ko if: isYandexMap -->
+        <div data-bind="ymapDeliveryPoints"></div>
+        <!-- /ko -->
+        <!-- ko if: isGoogleMap -->
+        <div data-bind="gmapDeliveryPoints"></div>
+        <!-- /ko -->
+        <!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>
+
+<!-- ko if: isPointSelected -->
+<div data-bind="template:{name: pointInfoTemplate, data: selectedPoint, afterRender: pointInfoScroll}"></div>
+<!-- /ko -->

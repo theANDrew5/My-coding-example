@@ -1,0 +1,10 @@
+﻿<!-- ko ifnot: isDeliveryTypesListEmptyMessage -->
+<div class="delivery__type-selector" data-bind="foreach: deliveryTypes">
+    <div class="delivery_type" data-bind="click: $parent.selectDeliveryType, css: {'delivery_type_selected': isSelected}, class: $parent.selectorItemClass">
+        <div class="delivery-type__content">
+            <div class="delivery_type_title" data-bind="html: title"></div>
+            <div class="delivery_type_note" data-bind="html: description"></div>
+        </div>
+    </div>
+</div>
+<!-- /ko -->
